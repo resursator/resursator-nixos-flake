@@ -19,7 +19,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, plasma-manager, stylix, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, plasma-manager, ... } @ inputs:
   {
     nixosConfigurations.homenix = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
