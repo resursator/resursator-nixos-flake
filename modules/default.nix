@@ -6,8 +6,6 @@
   };
   imports = [
     ./modulebundle.nix
-    # ./nixos/style.nix
-    # inputs.stylix.nixosModules.stylix ./nixos/style.nix
     inputs.home-manager.nixosModules.default
   ];
   environment.sessionVariables = {

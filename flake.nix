@@ -13,7 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    stylix.url = "github:danth/stylix";
     background-img = {
       url = "./resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg";
       flake = false;
@@ -27,13 +26,11 @@
       modules = [
         ./hosts/homenix/configuration.nix
         ./modules/default.nix
-        # stylix.nixosModules.stylix ./modules/nixos/style.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-          # home-manager.users."resursator" = import ./modules/nixos/home.nix;
         }
       ];
     };
