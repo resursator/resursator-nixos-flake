@@ -5,6 +5,7 @@
     ./programs/dev.nix
     ./programs/messengers.nix
     ./programs/steam.nix
+    ./services/ollama.nix
     ./services/openrgb.nix
     ./services/ssh.nix
     ./utils/cli.nix
