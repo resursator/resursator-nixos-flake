@@ -5,11 +5,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-HcKoSLWKk1eXpvp+PUXxwD5eQJRYXXkZEd1ofm5/QT0=",
-        "path": "/nix/store/rsh3530ywi16lawcpcrgv482has3jj72-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
+        "path": "/nix/store/h5iqvhgbsj9yz6yh6m8gn45r6vv252xg-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/rsh3530ywi16lawcpcrgv482has3jj72-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
+        "path": "/nix/store/h5iqvhgbsj9yz6yh6m8gn45r6vv252xg-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
         "type": "path"
       }
     },
@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723560829,
-        "narHash": "sha256-aSPUFNZKc3x6QCP9pgW9tI6UlExcqET9Fa+JhVJYb+A=",
+        "lastModified": 1723587631,
+        "narHash": "sha256-FZ27DsgOROvv/4Cvo34UcIqEJLQ6cKIWHcQsM3zLN3I=",
         "owner": "nix-community",
         "repo": "plasma-manager",
-        "rev": "6e817b1c8530e4241ed9cef6edfac5fe281ee01c",
+        "rev": "76dab4ba280ddd1b6c5aec0bb0aa0ace201c39ae",
         "type": "github"
       },
       "original": {
