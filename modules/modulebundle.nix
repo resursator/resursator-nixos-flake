@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./programs/alvr.nix
     ./programs/browser.nix
     ./programs/dev.nix
     ./programs/messengers.nix
