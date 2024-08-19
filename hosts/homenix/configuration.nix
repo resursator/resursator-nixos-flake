@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, options, ... }:
+{ ... }:
 
 {
   imports =
@@ -64,11 +64,7 @@
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
+  # OR pipewire (declared in services)
 
 
   # Enable touchpad support (enabled default in most desktopManager).

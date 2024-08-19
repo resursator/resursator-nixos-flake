@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, ... }:
 {
   programs.plasma = {
     enable = true;
