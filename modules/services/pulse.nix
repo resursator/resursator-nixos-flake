@@ -1,4 +1,11 @@
-{ ... }:
+{ lib, config, ... }:
 {
-  hardware.pulseaudio.enable = true;
+  options = {
+    pulse.enable =
+      lib.mkEnableOption "enables pulse module";
+  };
+
+  config = lib.mkIf config.pulse.enable {
+    hardware.pulseaudio.enable = true;
+  };
 }

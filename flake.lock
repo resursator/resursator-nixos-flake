@@ -5,11 +5,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-HcKoSLWKk1eXpvp+PUXxwD5eQJRYXXkZEd1ofm5/QT0=",
-        "path": "/nix/store/wcj7z8rrji2dkzb5ykcsllysn0ywf3j2-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
+        "path": "/nix/store/py8s59rhfs7jcbahmxvqvw4zy9c41ra2-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/wcj7z8rrji2dkzb5ykcsllysn0ywf3j2-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
+        "path": "/nix/store/py8s59rhfs7jcbahmxvqvw4zy9c41ra2-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
         "type": "path"
       }
     },
