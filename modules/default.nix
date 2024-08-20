@@ -13,8 +13,8 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  pulse.enable = true;
-  pipewire.enable = false;
+  pulse.enable = false;
+  pipewire.enable = true;
 
   environment.sessionVariables = {
     FLAKE = "/home/resursator/nixosFlake";
