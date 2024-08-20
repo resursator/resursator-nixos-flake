@@ -8,7 +8,8 @@
     ./programs/steam.nix
     ./services/ollama.nix
     ./services/openrgb.nix
-    ./services/pipewire.nix
+    #./services/pipewire.nix
+    ./services/pulse.nix
     ./services/plymouth.nix
     ./services/ssh.nix
     ./utils/cli.nix
