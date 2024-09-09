@@ -1,18 +1,5 @@
 {
   "nodes": {
-    "background-img": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-HcKoSLWKk1eXpvp+PUXxwD5eQJRYXXkZEd1ofm5/QT0=",
-        "path": "/nix/store/yyxz1wnq61fpkc5i6i9rw370kjsvdcvc-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/yyxz1wnq61fpkc5i6i9rw370kjsvdcvc-source/resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg",
-        "type": "path"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -74,7 +61,6 @@
     },
     "root": {
       "inputs": {
-        "background-img": "background-img",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "plasma-manager": "plasma-manager"

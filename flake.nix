@@ -13,10 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    background-img = {
-      url = "./resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg";
-      flake = false;
-    };
   };
 
   outputs = { nixpkgs, home-manager, plasma-manager, ... } @ inputs:

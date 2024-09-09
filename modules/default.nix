@@ -23,7 +23,7 @@
   environment.systemPackages = [
     (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
-      background=${inputs.background-img}
+      background=${../resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg}
     '')
   ];
 }
