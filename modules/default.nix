@@ -23,12 +23,14 @@
   # services
   ollama.enable = true;
   openrgb.enable = true;
-  pipewire.enable = true;
   plymouth.enable = true;
-  pulse.enable = false;
   ssh.enable = true;
 
-  #utils
+  # sound
+  pipewire.enable = true;
+  pulse.enable = false;
+
+  # utils
   cliutils.enable = true;
   guiutils.enable = true;
 
