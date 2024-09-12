@@ -1,12 +1,23 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    nh
-    nil         # LSP for Kate editor
-    nixd        # LSP for zed
-    p7zip
-    rar
-    testdisk-qt
-    wget
-  ];
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options = {
+    cliutils.enable = lib.mkEnableOption "enables cliutils module";
+  };
+
+  config = lib.mkIf config.cliutils.enable {
+    environment.systemPackages = with pkgs; [
+      nh
+      nil         # LSP for Kate editor
+      nixd        # LSP for zed
+      p7zip
+      rar
+      testdisk-qt
+      wget
+    ];
+  };
 }

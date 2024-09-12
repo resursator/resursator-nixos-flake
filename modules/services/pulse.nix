@@ -1,4 +1,8 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  ...
+}:
 {
   options = {
     pulse.enable =
@@ -6,6 +10,7 @@
   };
 
   config = lib.mkIf config.pulse.enable {
+    services.pipewire.enable = false;
     hardware.pulseaudio.enable = true;
   };
 }

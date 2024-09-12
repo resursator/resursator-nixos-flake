@@ -1,8 +1,18 @@
-{ ... }:
 {
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  lib,
+  config,
+  ...
+}:
+{
+  options = {
+    ssh.enable = lib.mkEnableOption "enables ssh module";
+  };
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  config = lib.mkIf config.ssh.enable {
+    # Enable the OpenSSH daemon.
+    services.openssh.enable = true;
+
+    # Open ports in the firewall.
+    networking.firewall.allowedTCPPorts = [ 22 ];
+  };
 }

@@ -13,8 +13,24 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  pulse.enable = false;
+  # programs
+  alvr.enable = true;
+  browser.enable = true;
+  dev.enable = true;
+  messengers.enable = true;
+  steam.enable = true;
+
+  # services
+  ollama.enable = true;
+  openrgb.enable = true;
   pipewire.enable = true;
+  plymouth.enable = true;
+  pulse.enable = false;
+  ssh.enable = true;
+
+  #utils
+  cliutils.enable = true;
+  guiutils.enable = true;
 
   environment.sessionVariables = {
     FLAKE = "/home/resursator/nixosFlake";
