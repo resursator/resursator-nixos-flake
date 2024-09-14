@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -13,6 +14,10 @@
       enable = true;
       acceleration = "cuda";
       host = "0.0.0.0";
+      environmentVariables = {
+        CUDA_VISIBLE_DEVICES = "0";
+        LD_LIBRARY_PATH = "${pkgs.cudaPackages.cudatoolkit}/lib:${pkgs.cudaPackages.cudatoolkit}/lib64";
+      };
     };
     networking.firewall.allowedTCPPorts = [ 11434 ];
   };
