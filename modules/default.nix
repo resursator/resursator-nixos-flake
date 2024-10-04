@@ -21,6 +21,7 @@
   steam.enable = true;
 
   # services
+  docker.enable = true;
   ollama.enable = true;
   openrgb.enable = true;
   plymouth.enable = true;

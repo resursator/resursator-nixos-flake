@@ -6,6 +6,7 @@
     ./programs/dev.nix
     ./programs/messengers.nix
     ./programs/steam.nix
+    ./services/docker.nix
     ./services/ollama.nix
     ./services/openrgb.nix
     ./services/pipewire.nix
