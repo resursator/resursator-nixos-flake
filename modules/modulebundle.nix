@@ -7,6 +7,7 @@
     ./programs/messengers.nix
     ./programs/rustdesk.nix
     ./programs/steam.nix
+    ./programs/vesktopCustom.nix
     ./services/amnezia.nix
     ./services/docker.nix
     ./services/ollama.nix

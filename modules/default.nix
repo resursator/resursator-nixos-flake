@@ -19,6 +19,7 @@
   dev.enable = true;
   messengers.enable = true;
   steam.enable = true;
+  vesktopCustom.enable = true;
 
   # services
   amnezia.enable = true;
