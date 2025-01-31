@@ -21,6 +21,7 @@
   steam.enable = true;
 
   # services
+  amnezia.enable = true;
   docker.enable = true;
   ollama.enable = true;
   openrgb.enable = true;
