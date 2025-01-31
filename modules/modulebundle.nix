@@ -5,6 +5,7 @@
     ./programs/browser.nix
     ./programs/dev.nix
     ./programs/messengers.nix
+    ./programs/rustdesk.nix
     ./programs/steam.nix
     ./services/amnezia.nix
     ./services/docker.nix

@@ -26,6 +26,7 @@
   ollama.enable = true;
   openrgb.enable = true;
   plymouth.enable = true;
+  rustdesk.enable = true;
   ssh.enable = true;
 
   # sound
