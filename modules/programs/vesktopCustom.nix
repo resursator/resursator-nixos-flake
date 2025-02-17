@@ -7,28 +7,20 @@
 let
   customVesktopIcon = pkgs.runCommand "custom-vesktop-icon" {} ''
     mkdir -p $out
-    cp ${../../resources/discord.png} $out/icon.png
-    cp ${../../resources/discord-tray-icon.png} $out/tray-icon.png
-    cp ${../../resources/discord-loading.gif} $out/loading.gif
+    cp ${../../resources/discord/discord.icns} $out/icon.icns
+    cp ${../../resources/discord/discord.ico} $out/icon.ico
+    cp ${../../resources/discord/discord-tray-icon.png} $out/tray-icon.png
+    cp ${../../resources/discord/discord-loading.gif} $out/loading.gif
   '';
 
   vesktopCustom = pkgs.vesktop.overrideAttrs (oldAttrs: {
     preBuild = oldAttrs.preBuild or "" + ''
-      echo "Replacing tray icon and loading animation"
+      echo "Replacing icon, icns and loading animation"
+      cp ${customVesktopIcon}/icon.icns build/icon.icns
+      cp ${customVesktopIcon}/icon.ico static/icon.ico
       cp ${customVesktopIcon}/tray-icon.png build/icon.png
       cp ${customVesktopIcon}/tray-icon.png static/icon.png
       cp ${customVesktopIcon}/loading.gif static/shiggy.gif
-    '';
-    postInstall = oldAttrs.postInstall or "" + ''
-      echo "Replacing app icon"
-      rm -r $out/share/icons/hicolor
-      mkdir -p $out/share/icons/hicolor/256x256/apps/
-
-      # Ensure the icon directory exists
-      iconPath="$out/share/icons/hicolor/256x256/apps/vesktop.png"
-
-      # Copy the custom icon (replace with your actual icon file)
-      cp ${customVesktopIcon}/icon.png $iconPath
     '';
   });
 in
