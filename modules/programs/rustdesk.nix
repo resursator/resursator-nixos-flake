@@ -11,13 +11,13 @@
 
   config = lib.mkIf config.rustdesk.enable {
     environment.systemPackages = with pkgs; [
-      rustdesk
+      rustdesk-flutter
     ];
     systemd.services.rustdesk = {
       enable = true;
       description = "rustdesk";
       serviceConfig = {
-        ExecStart = "${pkgs.rustdesk}/bin/rustdesk --service";
+        ExecStart = "${pkgs.rustdesk-flutter}/bin/rustdesk --service";
         ExecStop = "pkill -f \"rustdesk --\"";
         PIDFile = "/run/rustdesk.pid";
         KillMode = "mixed";
