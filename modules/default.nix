@@ -17,6 +17,7 @@
   alvr.enable = true;
   browser.enable = true;
   dev.enable = true;
+  gimp-rc.enable = true;
   messengers.enable = true;
   steam.enable = true;
   vesktopCustom.enable = true;

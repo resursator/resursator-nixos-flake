@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    gimpnixpkgs.url = "github:jtojnar/nixpkgs?ref=gimp-meson";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,9 +16,12 @@
   };
 
   outputs = { nixpkgs, home-manager, plasma-manager, ... } @ inputs:
+  let
+    gimppkgs = inputs.gimpnixpkgs.legacyPackages.x86_64-linux;
+  in
   {
     nixosConfigurations.homenix = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs; inherit gimppkgs; };
       modules = [
         ./hosts/homenix/configuration.nix
         ./modules/default.nix

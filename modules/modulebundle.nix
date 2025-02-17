@@ -4,6 +4,7 @@
     ./programs/alvr.nix
     ./programs/browser.nix
     ./programs/dev.nix
+    ./programs/gimp-rc.nix
     ./programs/messengers.nix
     ./programs/rustdesk.nix
     ./programs/steam.nix
