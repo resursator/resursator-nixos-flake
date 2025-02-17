@@ -30,7 +30,16 @@
             "light": "One Light",
             "dark": "One Dark"
           },
-          "auto_update": false
+          "auto_update": false,
+          "lsp": {
+            "nil": {
+              "nix": {
+                "flake": {
+                  "autoArchive": "true"
+                }
+              }
+            }
+          }
         }
     '';
   };
