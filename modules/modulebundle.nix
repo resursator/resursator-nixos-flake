@@ -9,6 +9,7 @@
     ./programs/rustdesk.nix
     ./programs/steam.nix
     ./programs/vesktopCustom.nix
+    ./programs/zen-beta.nix
     ./services/amnezia.nix
     ./services/docker.nix
     ./services/ollama.nix
