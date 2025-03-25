@@ -17,6 +17,7 @@
       p7zip
       rar
       testdisk-qt
+      ncdu
       wget
     ];
   };
