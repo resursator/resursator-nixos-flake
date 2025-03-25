@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  rustdeskpkgs,
   ...
 }:
 {
@@ -10,7 +10,7 @@
   };
 
   config = lib.mkIf config.rustdesk.enable {
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with rustdeskpkgs; [
       rustdesk-flutter
     ];
   };

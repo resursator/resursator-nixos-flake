@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  zedpkgs,
   ...
 }:
 {
@@ -10,10 +11,10 @@
   };
 
   config = lib.mkIf config.dev.enable {
-    environment.systemPackages = with pkgs; [
-      git
-      github-desktop
-      zed-editor
+    environment.systemPackages = [
+      pkgs.git
+      pkgs.github-desktop
+      zedpkgs.zed-editor
     ];
   };
 }
