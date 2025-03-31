@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  zedpkgs,
   ...
 }:
 {
@@ -14,7 +13,7 @@
     environment.systemPackages = [
       pkgs.git
       pkgs.github-desktop
-      zedpkgs.zed-editor
+      pkgs.zed-editor
     ];
   };
 }
