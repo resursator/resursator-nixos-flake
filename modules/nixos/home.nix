@@ -30,6 +30,7 @@
   #
   home.sessionVariables = {
     FLAKE = "/home/resursator/nixosFlake";
+    NH_FLAKE = "/home/resursator/nixosFlake";
   };
 
   # Let Home Manager install and manage itself.
