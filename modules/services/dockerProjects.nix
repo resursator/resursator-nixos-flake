@@ -5,49 +5,46 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    mapAttrs
-    mkMerge
-    ;
-  dockerProjects = {
-    portainer = "/home/resursator/docker/portainer";
-    ntfy = "/home/resursator/docker/ntfy";
+  mkService = project: composeFile: {
+    "${project}" = {
+      description = "Docker Compose Service for ${project}";
+      after = [ "docker.service" ];
+      requires = [ "docker.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.docker}/bin/docker compose -f ${composeFile} up -d";
+        ExecStop = "${pkgs.docker}/bin/docker compose -f ${composeFile} down";
+        Restart = "always";
+      };
+    };
   };
+
+  mkDirs = project: [
+    "d /var/lib/dockerProjects/${project} 0755 root root -"
+    "d /var/lib/dockerProjects/${project}/data 0755 root root -"
+  ];
 in
 {
-  options = {
-    dockerProjects.enable = mkEnableOption "Enable automatic docker-compose projects";
+  options.dockerProjects.projects = lib.mkOption {
+    type = lib.types.attrsOf lib.types.path;
+    default = {
+      portainer = ../../modules/docker-compose/portainer/docker-compose.yml;
+    };
+    description = "Set of docker-compose projects (name -> path to yml)";
   };
 
-  config = mkIf config.dockerProjects.enable {
-
-    # Включаем docker
-    services.docker.enable = true;
-
-    # Добавляем пользователя в группу docker
-    users.users.resursator.extraGroups = (config.users.users.resursator.extraGroups or [ ]) ++ [
-      "docker"
-    ];
-
-    # Создаём systemd unit для каждого проекта
-    systemd.services = mkMerge (
-      mapAttrs (name: path: {
-        "docker-compose-${name}" = {
-          description = "Docker Compose project: ${name}";
-          wantedBy = [ "multi-user.target" ];
-          after = [ "docker.service" ];
-          requires = [ "docker.service" ];
-
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f ${path}/docker-compose.yml up -d";
-            ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f ${path}/docker-compose.yml down";
-          };
-        };
-      }) dockerProjects
-    );
-  };
+  config =
+    lib.mkIf (lib.hasAttr "dockerProjects" config && lib.hasAttr "projects" config.dockerProjects)
+      (
+        let
+          projects = builtins.attrNames config.dockerProjects.projects;
+          services = lib.foldl' (
+            acc: project: acc // mkService project (config.dockerProjects.projects.${project})
+          ) { } projects;
+        in
+        {
+          systemd.tmpfiles.rules = lib.concatMap mkDirs projects;
+          systemd.services = services;
+        }
+      );
 }

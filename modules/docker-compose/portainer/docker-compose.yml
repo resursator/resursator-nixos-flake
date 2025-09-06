@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000" # веб-интерфейс
+      - "9443:9443" # HTTPS (опционально)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # доступ к Docker демону
+      - /var/lib/portainer/data:/data # данные Portainer
+
+volumes:
+  portainer_data:

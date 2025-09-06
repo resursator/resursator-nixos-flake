@@ -12,6 +12,7 @@
     ./programs/zen-beta.nix
     ./services/amnezia.nix
     ./services/docker.nix
+    ./services/dockerProjects.nix
     ./services/ollama.nix
     ./services/openrgb.nix
     ./services/pipewire.nix
