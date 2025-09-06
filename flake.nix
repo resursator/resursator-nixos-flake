@@ -19,24 +19,51 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, plasma-manager, ... } @ inputs:
-  let
-    zenpkgs = inputs.zen-browser.packages.x86_64-linux;
-    rustdeskpkgs = inputs.rustdesknixpkgs.legacyPackages.x86_64-linux;
-  in
-  {
-    nixosConfigurations.homenix = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; inherit zenpkgs; inherit rustdeskpkgs; };
-      modules = [
-        ./hosts/homenix/configuration.nix
-        ./modules/default.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
-        }
-      ];
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      plasma-manager,
+      ...
+    }@inputs:
+    let
+      zenpkgs = inputs.zen-browser.packages.x86_64-linux;
+      rustdeskpkgs = inputs.rustdesknixpkgs.legacyPackages.x86_64-linux;
+    in
+    {
+      nixosConfigurations.homenix = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit zenpkgs;
+          inherit rustdeskpkgs;
+        };
+        modules = [
+          ./hosts/homenix/configuration.nix
+          ./modules/default.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+          }
+        ];
+      };
+      nixosConfigurations.nasnix = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit zenpkgs;
+          inherit rustdeskpkgs;
+        };
+        modules = [
+          ./hosts/homenas/configuration.nix
+          ./modules/default.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+          }
+        ];
+      };
     };
-  };
 }

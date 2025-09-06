@@ -14,7 +14,7 @@
   ];
 
   # programs
-  alvr.enable = true;
+  alvr.enable = false;
   browser.enable = true;
   dev.enable = true;
   gimp-rc.enable = true;
