@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  gimppkgs,
+  pkgs,
   ...
 }:
 {
@@ -10,8 +10,8 @@
   };
 
   config = lib.mkIf config.gimp-rc.enable {
-    environment.systemPackages = with gimppkgs; [
-      gimp
+    environment.systemPackages = with pkgs; [
+      gimp3
     ];
   };
 }

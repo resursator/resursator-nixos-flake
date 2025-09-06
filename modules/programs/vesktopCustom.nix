@@ -14,7 +14,7 @@ let
   '';
 
   vesktopCustom = pkgs.vesktop.overrideAttrs (oldAttrs: {
-    electron = pkgs.electron_33;
+    # electron = pkgs.electron_33;
     preBuild = oldAttrs.preBuild or "" + ''
       echo "Replacing icon, icns and loading animation"
       cp ${customVesktopIcon}/icon.icns build/icon.icns
