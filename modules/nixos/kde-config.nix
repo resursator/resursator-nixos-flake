@@ -11,7 +11,6 @@
       wallpaper = "${../../resources/tyler-van-der-hoeven-_ok8uVzL2gI-unsplash.jpg}";
     };
     configFile = {
-      "kcminputrc"."Keyboard".LayoutPerWindow = true;
       "kcminputrc"."Libinput/4152/5929/SteelSeries SteelSeries Rival 110 Gaming Mouse"."PointerAcceleration" =
         "-0.600";
       "kdeglobals"."KScreen"."ScaleFactor" = 1.5;
