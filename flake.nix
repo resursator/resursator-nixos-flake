@@ -48,7 +48,7 @@
           }
         ];
       };
-      nixosConfigurations.nasnix = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.homenas = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           inherit zenpkgs;
