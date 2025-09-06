@@ -13,10 +13,11 @@
   };
 
   imports = [
-    ./nixos/nvidia.nix
     ./modulebundle.nix
     inputs.home-manager.nixosModules.default
   ];
+
+  nvidia-drivers.enable = lib.mkDefault true;
 
   # programs
   alvr.enable = lib.mkDefault false;

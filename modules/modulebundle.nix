@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./nixos/nvidia.nix
     ./programs/alvr.nix
     ./programs/browser.nix
     ./programs/dev.nix
