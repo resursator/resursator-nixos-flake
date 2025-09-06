@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -14,7 +19,7 @@
   ];
 
   # programs
-  alvr.enable = false;
+  alvr.enable = lib.mkDefault false;
   browser.enable = true;
   dev.enable = true;
   gimp-rc.enable = true;
