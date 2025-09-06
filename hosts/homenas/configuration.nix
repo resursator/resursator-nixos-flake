@@ -72,6 +72,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  amd-drivers.enable = true;
+  nvidia-drivers.enable = false;
+
   # services
   ollama.enable = true;
 

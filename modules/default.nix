@@ -17,6 +17,7 @@
     inputs.home-manager.nixosModules.default
   ];
 
+  amd-drivers.enable = lib.mkDefault false;
   nvidia-drivers.enable = lib.mkDefault true;
 
   # programs
