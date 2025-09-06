@@ -12,7 +12,7 @@ let
       requires = [ "docker.service" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        ExecStart = "${pkgs.docker}/bin/docker compose -f ${composeFile} up -d";
+        ExecStart = "${pkgs.docker}/bin/docker compose -f ${composeFile} up";
         ExecStop = "${pkgs.docker}/bin/docker compose -f ${composeFile} down";
         Restart = "always";
       };
