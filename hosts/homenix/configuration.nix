@@ -77,6 +77,8 @@
     extraGroups = [ "wheel" ];
   };
 
+  dockerProjects.enable = true;
+
   # apps
   alvr.enable = true;
   dev.enable = true;

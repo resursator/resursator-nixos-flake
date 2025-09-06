@@ -25,26 +25,27 @@ let
   ];
 in
 {
-  options.dockerProjects.projects = lib.mkOption {
-    type = lib.types.attrsOf lib.types.path;
-    default = {
-      portainer = ../../modules/docker-compose/portainer/docker-compose.yml;
+  options.dockerProjects = {
+    enable = lib.mkEnableOption "Enable dockerProjects module";
+    projects = lib.mkOption {
+      type = lib.types.attrsOf lib.types.path;
+      default = {
+        portainer = ../docker-compose/portainer/docker-compose.yml;
+      };
+      description = "Set of docker-compose projects (name -> path to yml)";
     };
-    description = "Set of docker-compose projects (name -> path to yml)";
   };
 
-  config =
-    lib.mkIf (lib.hasAttr "dockerProjects" config && lib.hasAttr "projects" config.dockerProjects)
-      (
-        let
-          projects = builtins.attrNames config.dockerProjects.projects;
-          services = lib.foldl' (
-            acc: project: acc // mkService project (config.dockerProjects.projects.${project})
-          ) { } projects;
-        in
-        {
-          systemd.tmpfiles.rules = lib.concatMap mkDirs projects;
-          systemd.services = services;
-        }
-      );
+  config = lib.mkIf config.dockerProjects.enable (
+    let
+      projects = builtins.attrNames config.dockerProjects.projects;
+      services = lib.foldl' (
+        acc: project: acc // mkService project (config.dockerProjects.projects.${project})
+      ) { } projects;
+    in
+    {
+      systemd.tmpfiles.rules = lib.concatMap mkDirs projects;
+      systemd.services = services;
+    }
+  );
 }

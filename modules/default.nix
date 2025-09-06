@@ -32,6 +32,11 @@
   # services
   amnezia.enable = lib.mkDefault false;
   docker.enable = lib.mkDefault true;
+  dockerProjects.enable = lib.mkDefault false;
+  dockerProjects.projects = {
+    portainer = ./docker-compose/portainer/docker-compose.yml;
+  };
+
   ollama.enable = lib.mkDefault false;
   openrgb.enable = lib.mkDefault true;
   plymouth.enable = lib.mkDefault true;
