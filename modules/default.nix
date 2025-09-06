@@ -20,33 +20,34 @@
 
   # programs
   alvr.enable = lib.mkDefault false;
-  browser.enable = true;
-  dev.enable = true;
-  gimp-rc.enable = true;
-  messengers.enable = true;
-  steam.enable = true;
-  vesktopCustom.enable = true;
-  zen.enable = true;
+  browser.enable = lib.mkDefault true;
+  dev.enable = lib.mkDefault false;
+  gimp-rc.enable = lib.mkDefault false;
+  messengers.enable = lib.mkDefault false;
+  steam.enable = lib.mkDefault false;
+  vesktopCustom.enable = lib.mkDefault false;
+  zen.enable = lib.mkDefault true;
 
   # services
-  amnezia.enable = true;
-  docker.enable = true;
-  ollama.enable = true;
-  openrgb.enable = true;
-  plymouth.enable = true;
-  rustdesk.enable = true;
-  ssh.enable = true;
+  amnezia.enable = lib.mkDefault false;
+  docker.enable = lib.mkDefault true;
+  ollama.enable = lib.mkDefault false;
+  openrgb.enable = lib.mkDefault true;
+  plymouth.enable = lib.mkDefault true;
+  rustdesk.enable = lib.mkDefault true;
+  ssh.enable = lib.mkDefault true;
 
   # sound
-  pipewire.enable = true;
-  pulse.enable = false;
+  pipewire.enable = lib.mkDefault true;
+  pulse.enable = lib.mkDefault false;
 
   # utils
-  cliutils.enable = true;
-  guiutils.enable = true;
+  cliutils.enable = lib.mkDefault true;
+  guiutils.enable = lib.mkDefault true;
 
   environment.sessionVariables = {
     FLAKE = "/home/resursator/nixosFlake";
+    NH_FLAKE = "/home/resursator/nixosFlake";
   };
 
   environment.systemPackages = [

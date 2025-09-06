@@ -79,6 +79,19 @@
 
   # apps
   alvr.enable = true;
+  dev.enable = true;
+  gimp-rc.enable = true;
+  messengers.enable = true;
+  steam.enable = true;
+  vesktopCustom.enable = true;
+
+  # services
+  amnezia.enable = true;
+  ollama.enable = true;
+
+  # sound
+  pipewire.enable = true;
+  pulse.enable = false;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 
