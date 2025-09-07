@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  HOSTNAME,
   lib,
   ...
 }:
@@ -8,8 +9,13 @@
   nixpkgs.config.allowUnfree = true;
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users."resursator" = import ./nixos/home.nix;
+    extraSpecialArgs = {
+      inherit inputs HOSTNAME;
+    };
+    users."resursator" = lib.mkMerge [
+      (import ./nixos/home.nix)
+      (import ./services/ssh-gpg.nix)
+    ];
   };
 
   imports = [
