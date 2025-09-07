@@ -19,6 +19,7 @@ in
   config = lib.mkIf (lib.hasAttr "ssh-gpg" config && config.ssh-gpg.enable) {
     home.packages = with pkgs; [
       gnupg
+      pinentry
     ];
 
     services.gpg-agent = {
