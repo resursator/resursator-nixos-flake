@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   HOSTNAME,
+  USERNAME,
   lib,
   ...
 }:
@@ -10,9 +11,9 @@
 
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs HOSTNAME;
+      inherit inputs HOSTNAME USERNAME;
     };
-    users."resursator" = lib.mkMerge [
+    users.${USERNAME} = lib.mkMerge [
       (import ./nixos/home.nix)
       (import ./services/ssh-gpg.nix)
     ];
@@ -59,8 +60,8 @@
   guiutils.enable = lib.mkDefault true;
 
   environment.sessionVariables = {
-    FLAKE = "/home/resursator/nixosFlake";
-    NH_FLAKE = "/home/resursator/nixosFlake";
+    FLAKE = "/home/${USERNAME}/nixosFlake";
+    NH_FLAKE = "/home/${USERNAME}/nixosFlake";
   };
 
   environment.systemPackages = [

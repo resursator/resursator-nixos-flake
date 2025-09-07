@@ -1,9 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ ... }:
-
+{
+  HOSTNAME,
+  USERNAME,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -25,7 +24,7 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  networking.hostName = "homenix";
+  networking.hostName = HOSTNAME;
   networking.networkmanager.enable = true;
   networking.timeServers = [ "10.110.0.1" ];
   time.timeZone = "Europe/Moscow";
@@ -71,9 +70,9 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.resursator = {
+  users.users.${USERNAME} = {
     isNormalUser = true;
-    home = "/home/resursator";
+    home = "/home/${USERNAME}";
     extraGroups = [ "wheel" ];
   };
 
@@ -97,4 +96,20 @@
 
   system.stateVersion = "24.05"; # Did you read the comment?
 
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "mem_sleep_default=deep"
+  ];
+
+  # Поддержка S3
+  systemd.services."hibernate.target".enable = false;
+  systemd.services."hybrid-sleep.target".enable = false;
+
+  # Настройка логина для сна
+  services.logind.settings.Login = {
+    HandleSuspendKey = "suspend";
+    HandleLidSwitch = "suspend";
+    HandleHibernateKey = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
 }

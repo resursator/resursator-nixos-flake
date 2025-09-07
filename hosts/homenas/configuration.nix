@@ -1,5 +1,9 @@
-{ pkgs, ... }:
-
+{
+  pkgs,
+  HOSTNAME,
+  USERNAME,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -13,7 +17,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "homenas"; # Define your hostname.
+  networking.hostName = HOSTNAME;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -61,8 +65,9 @@
   services.printing.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.resursator = {
+  users.users.${USERNAME} = {
     isNormalUser = true;
+    home = "/home/${USERNAME}";
     extraGroups = [
       "networkmanager"
       "wheel"

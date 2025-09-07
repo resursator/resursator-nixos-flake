@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    rustdesknixpkgs.url = "github:nixos/nixpkgs?rev=8a4fbb9582466e8abbe9f4cc4fd455bbcc0861ba";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -24,16 +24,16 @@
       nixpkgs,
       home-manager,
       plasma-manager,
+      sops-nix,
       ...
     }@inputs:
     let
       zenpkgs = inputs.zen-browser.packages.x86_64-linux;
-      rustdeskpkgs = inputs.rustdesknixpkgs.legacyPackages.x86_64-linux;
       hosts = {
         homenix = "homenix";
         homenas = "homenas";
       };
-
+      USERNAME = "resursator";
     in
     {
       nixosConfigurations = builtins.listToAttrs (
@@ -41,17 +41,18 @@
           name = hn;
           value = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs zenpkgs rustdeskpkgs;
+              inherit inputs zenpkgs USERNAME;
               HOSTNAME = hn;
             };
             modules = [
               ./hosts/${hn}/configuration.nix
               ./modules/default.nix
+              sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+                home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
               }
             ];
           };

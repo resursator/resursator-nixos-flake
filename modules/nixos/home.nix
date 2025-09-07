@@ -1,8 +1,11 @@
-{ ... }:
+{
+  USERNAME,
+  ...
+}:
 
 {
-  home.username = "resursator";
-  home.homeDirectory = "/home/resursator";
+  home.username = USERNAME;
+  home.homeDirectory = "/home/${USERNAME}";
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
   imports = [
@@ -28,10 +31,10 @@
   #
   #  /etc/profiles/per-user/resursator/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    FLAKE = "/home/resursator/nixosFlake";
-    NH_FLAKE = "/home/resursator/nixosFlake";
-  };
+  # home.sessionVariables = {
+  #   FLAKE = "/home/${USERNAME}/nixosFlake";
+  #   NH_FLAKE = "/home/${USERNAME}/nixosFlake";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
