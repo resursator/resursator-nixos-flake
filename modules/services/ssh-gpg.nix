@@ -8,6 +8,7 @@
 let
   hostName = HOSTNAME;
   hostKey = ./secrets/${hostName}.gpg.key;
+  pinentryPath = pkgs.pinentry.out/bin/pinentry;
 in
 {
   options.ssh-gpg.enable = lib.mkOption {
@@ -29,6 +30,7 @@ in
       maxCacheTtl = 7200;
 
       extraConfig = ''
+        pinentry-program ${pinentryPath}
         ${builtins.trace (
           if lib.pathExists hostKey then
             "SSH-GPG: using key for host ${hostName}"
