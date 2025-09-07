@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   HOSTNAME ? "unknown-host",
   ...
 }:
@@ -16,6 +17,10 @@ in
   };
 
   config = lib.mkIf (lib.hasAttr "ssh-gpg" config && config.ssh-gpg.enable) {
+    home.packages = with pkgs; [
+      gnupg
+    ];
+
     services.gpg-agent = {
       enable = true;
       enableSshSupport = true;
