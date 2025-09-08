@@ -16,7 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -52,7 +55,10 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+                home-manager.sharedModules = [
+                  plasma-manager.homeModules.plasma-manager
+                  sops-nix.homeManagerModules.sops
+                ];
               }
             ];
           };

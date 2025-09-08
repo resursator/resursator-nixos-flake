@@ -98,18 +98,6 @@
 
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
-    "mem_sleep_default=deep"
+    "mem_sleep_default=s2idle"
   ];
-
-  # Поддержка S3
-  systemd.services."hibernate.target".enable = false;
-  systemd.services."hybrid-sleep.target".enable = false;
-
-  # Настройка логина для сна
-  services.logind.settings.Login = {
-    HandleSuspendKey = "suspend";
-    HandleLidSwitch = "suspend";
-    HandleHibernateKey = "ignore";
-    HandleLidSwitchDocked = "ignore";
-  };
 }
