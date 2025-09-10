@@ -32,11 +32,17 @@
     }@inputs:
     let
       zenpkgs = inputs.zen-browser.packages.x86_64-linux;
-      hosts = {
+      USERNAME = "resursator";
+
+      nixosHosts = {
         homenix = "homenix";
         homenas = "homenas";
       };
-      USERNAME = "resursator";
+
+      nonNixosHosts = [
+        "varna-server"
+      ];
+
     in
     {
       nixosConfigurations = builtins.listToAttrs (
@@ -62,7 +68,24 @@
               }
             ];
           };
-        }) (builtins.attrValues hosts)
+        }) (builtins.attrValues nixosHosts)
+      );
+
+      homeConfigurations = builtins.listToAttrs (
+        map (nhn: {
+          name = nhn;
+          value = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            username = USERNAME;
+            homeDirectory = "/home/${USERNAME}";
+            modules = [
+              ./hosts/${nhn}/home.nix
+              ./modules/default.nix
+              plasma-manager.homeModules.plasma-manager
+              sops-nix.homeManagerModules.sops
+            ];
+          };
+        }) nonNixosHosts
       );
     };
 }
