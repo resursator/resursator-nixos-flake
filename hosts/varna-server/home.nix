@@ -26,7 +26,6 @@
       . "$HOME/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh"
     fi
   '';
-
   programs.bash = {
     enable = true;
 
@@ -64,14 +63,14 @@
           fi
       fi
       if [ "$color_prompt" = yes ]; then
-          PS1='($debian_chroot)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+          PS1="(\$debian_chroot)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
       else
-          PS1='($debian_chroot)\u@\h:\$FLAKE\$ '
+          PS1="(\$debian_chroot)\u@\h:\$FLAKE\$ "
       fi
       unset color_prompt force_color_prompt
       case "$TERM" in
       xterm*|rxvt*)
-          PS1="\[\e]0;($debian_chroot)\u@\h: \$FLAKE\a\]$PS1"
+          PS1="\[\e]0;(\$debian_chroot)\u@\h: \$FLAKE\a\]$PS1"
           ;;
       esac
       if [ -x /usr/bin/dircolors ]; then
