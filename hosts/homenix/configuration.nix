@@ -98,6 +98,7 @@
 
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
-    "mem_sleep_default=s2idle"
+    "mem_sleep_default=deep"
+    "resume=/dev/nvme0n1p2"
   ];
 }
