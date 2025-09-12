@@ -72,14 +72,12 @@
       );
 
       homeConfigurations = builtins.listToAttrs (
-        map (nhn: {
-          name = nhn;
+        map (HOSTNAME: {
+          name = HOSTNAME;
           value = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
-              ./hosts/${nhn}/home.nix
-              plasma-manager.homeModules.plasma-manager
-              sops-nix.homeManagerModules.sops
+              ./hosts/${HOSTNAME}/home.nix
               {
                 _module.args = {
                   inherit USERNAME;
