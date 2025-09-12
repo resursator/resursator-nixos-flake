@@ -76,13 +76,16 @@
           name = nhn;
           value = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            username = USERNAME;
-            homeDirectory = "/home/${USERNAME}";
             modules = [
               ./hosts/${nhn}/home.nix
               ./modules/default.nix
               plasma-manager.homeModules.plasma-manager
               sops-nix.homeManagerModules.sops
+              {
+                _module.args = {
+                  inherit USERNAME;
+                };
+              }
             ];
           };
         }) nonNixosHosts
