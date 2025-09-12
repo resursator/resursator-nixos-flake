@@ -28,5 +28,17 @@
     fi
   '';
 
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      # Auto-source Home Manager session variables
+      if [ -d "$HOME/.profile.d" ]; then
+        for f in "$HOME/.profile.d/"*.sh; do
+          [ -r "$f" ] && . "$f"
+        done
+      fi
+    '';
+  };
+
   programs.home-manager.enable = true;
 }
