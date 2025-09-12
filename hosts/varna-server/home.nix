@@ -31,6 +31,7 @@
   programs.bash = {
     enable = true;
     bashrcExtra = ''
+      source ~/.bashrc-backup
       # Auto-source Home Manager session variables
       if [ -d "$HOME/.profile.d" ]; then
         for f in "$HOME/.profile.d/"*.sh; do
