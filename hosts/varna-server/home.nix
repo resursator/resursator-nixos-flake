@@ -1,8 +1,16 @@
 {
   USERNAME,
+  config,
   ...
 }:
-
+let
+  homeProfileBackup = builtins.tryEval (
+    builtins.readFile "${config.home.homeDirectory}/.profile-backup"
+  );
+  homeBashrcBackup = builtins.tryEval (
+    builtins.readFile "${config.home.homeDirectory}/.bashrc-backup"
+  );
+in
 {
   home.username = USERNAME;
   home.homeDirectory = "/home/${USERNAME}";
@@ -31,15 +39,33 @@
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      source ~/.bashrc-backup
       # Auto-source Home Manager session variables
       if [ -d "$HOME/.profile.d" ]; then
         for f in "$HOME/.profile.d/"*.sh; do
           [ -r "$f" ] && . "$f"
         done
       fi
+
+      # Import old .bashrc-backup if it exists
+      if [ -f "$HOME/.bashrc-backup" ]; then
+        . "$HOME/.bashrc-backup"
+      fi
     '';
   };
+
+  home.file.".profile".text = ''
+    # Start with old profile if exists
+    if [ -f "$HOME/.profile-backup" ]; then
+      . "$HOME/.profile-backup"
+    fi
+
+    # Include bashrc for login shells
+    if [ -n "$BASH_VERSION" ]; then
+      if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+      fi
+    fi
+  '';
 
   programs.home-manager.enable = true;
 }
