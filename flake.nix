@@ -78,7 +78,6 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
               ./hosts/${nhn}/home.nix
-              ./modules/default.nix
               plasma-manager.homeModules.plasma-manager
               sops-nix.homeManagerModules.sops
               {
