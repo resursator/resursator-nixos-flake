@@ -21,7 +21,6 @@
 
   imports = [
     ./modulebundle.nix
-    inputs.home-manager.nixosModules.default
   ];
 
   amd-drivers.enable = lib.mkDefault false;
