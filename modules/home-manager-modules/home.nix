@@ -35,6 +35,8 @@
   #   FLAKE = "/home/${USERNAME}/nixosFlake";
   #   NH_FLAKE = "/home/${USERNAME}/nixosFlake";
   # };
+  # hm modules
+  # ssh-keys.enable = false;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

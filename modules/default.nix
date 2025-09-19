@@ -16,6 +16,7 @@
     users.${USERNAME} = lib.mkMerge [
       (import ./home-manager-modules/home.nix)
       (import ./home-manager-modules/ssh-gpg.nix)
+      (import ./home-manager-modules/ssh-keys.nix)
     ];
   };
 

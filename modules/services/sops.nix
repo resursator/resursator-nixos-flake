@@ -27,18 +27,18 @@ in
     ];
 
     sops = {
-      age.keyFile = "/home/${USERNAME}/.config/age/keys.txt";
+      age.keyFile = "/home/${USERNAME}/.config/age/${hostName}.agekey";
 
       defaultSopsFile = secretsFile;
       defaultSopsFormat = "yaml";
 
       secrets = {
         ${privatekey} = {
-          path = "/home/${USERNAME}/.ssh/id_${hostName}";
+          path = "/home/${USERNAME}/.ssh/ssh_${hostName}";
           owner = USERNAME;
         };
         ${publickey} = {
-          path = "/home/${USERNAME}/.ssh/id_${hostName}.pub";
+          path = "/home/${USERNAME}/.ssh/ssh_${hostName}.pub";
           owner = USERNAME;
         };
       };

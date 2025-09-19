@@ -1,7 +1,11 @@
 keys:
-  - &primary age1dax5q6rgyj87gugaeq65uxvh5px956zr9m2nhdedtn3p8cvhe30s3dz2zy
+  - &homenix_key age1dax5q6rgyj87gugaeq65uxvh5px956zr9m2nhdedtn3p8cvhe30s3dz2zy
+  - &homenas_key age1eytdt4fhykvvflvcqnruffpfm6akty64mcp5r76ltl4mn0s3gftqx9rlps
+  - &varna-server_key age1wtpqkshxah7r4q4gc8nrmgc6cz8qs3tc5d3zq9ur34s25s8h647s6pel5c
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
-          - *primary
+          - *homenix_key
+          - *homenas_key
+          - *varna-server_key
