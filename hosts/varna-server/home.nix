@@ -10,6 +10,7 @@
   imports = [
     ../../modules/home-manager-modules/ssh-keys.nix
   ];
+  ssh-keys.enable = false;
 
   home.packages = [
   ];
