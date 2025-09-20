@@ -11,7 +11,6 @@
 
   config = lib.mkIf config.dev.enable {
     environment.systemPackages = [
-      pkgs.git
       pkgs.github-desktop
       pkgs.zed-editor
     ];

@@ -11,9 +11,10 @@
 
   config = lib.mkIf config.cliutils.enable {
     environment.systemPackages = with pkgs; [
+      git
       nh
-      nil         # LSP for Kate editor
-      nixd        # LSP for zed
+      nil # LSP for Kate editor
+      nixd # LSP for zed
       p7zip
       rar
       testdisk-qt
