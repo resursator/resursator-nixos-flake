@@ -8,7 +8,7 @@
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
   imports = [
-    ./modules/home-manager-modules/ssh-keys.nix
+    ../../modules/home-manager-modules/ssh-keys.nix
   ];
 
   home.packages = [
