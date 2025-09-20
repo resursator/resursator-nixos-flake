@@ -70,7 +70,7 @@ in
       recursive = true;
     };
 
-    home.activation.fixAuthorizedKeys = ''
+    home.activation.fixAuthorizedKeys = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
       ${pkgs.coreutils}/bin/mkdir -p ${config.home.homeDirectory}/.ssh
       ${pkgs.coreutils}/bin/rm -f ${config.home.homeDirectory}/.ssh/authorized_keys_nix
       ${pkgs.coreutils}/bin/cp ${config.home.homeDirectory}/.ssh/.authorized_keys_nix \
