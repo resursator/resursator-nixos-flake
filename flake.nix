@@ -78,6 +78,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
               ./hosts/${HOSTNAME}/home.nix
+              sops-nix.homeManagerModules.sops
               {
                 _module.args = {
                   inherit USERNAME;
