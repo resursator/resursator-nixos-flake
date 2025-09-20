@@ -8,6 +8,7 @@
 }:
 let
   secretsFile = ../../secrets/secrets.yaml;
+
   uid =
     let
       uidScript = pkgs.writeScript "get-uid" ''
@@ -23,6 +24,11 @@ let
       )
     );
 
+  sshKeys = [
+    "homenix"
+    "homenas"
+    "varna-server"
+  ];
 in
 {
   options.ssh-keys.enable = lib.mkOption {
@@ -39,6 +45,10 @@ in
 
     sops = {
       defaultSopsFile = secretsFile;
+      secrets.ssh_homenix_pubkey_unencrypted = {
+      };
+      secrets.ssh_homenas_pubkey_unencrypted = {
+      };
       secrets.ssh_varna-server_pubkey_unencrypted = {
       };
       defaultSymlinkPath = "/run/user/${builtins.toString uid}/secrets";
@@ -46,8 +56,13 @@ in
       age.keyFile = "/run/user/${builtins.toString uid}/sops-age.txt";
     };
 
-    home.file.".secretSopsPaths/pubkeys/ssh_varna-server_pubkey_unencrypted".text =
-      config.sops.secrets.ssh_varna-server_pubkey_unencrypted.path;
+    home.file = lib.mkMerge (
+      map (k: {
+        ".secretSopsPaths/pubkeys/ssh_${k}_pubkey_unencrypted" = {
+          text = config.sops.secrets."ssh_${k}_pubkey_unencrypted".path;
+        };
+      }) sshKeys
+    );
 
     systemd.user.services."merge-ssh-keys" = {
       Unit = {
@@ -65,13 +80,8 @@ in
 
           for f in "/home/${USERNAME}/.secretSopsPaths/pubkeys/"*; do
             [ -f "$f" ] || continue
-            target=$(cat "$f")
-            if [ -f "$target" ]; then
-              cat "$target" >>"$OUT"
-              echo "" >>"$OUT"
-            else
-              echo "⚠ secret target $target not found" >&2
-            fi
+            cat "$f" >> "$OUT"
+            echo "" >> "$OUT"
           done
         '';
       };
