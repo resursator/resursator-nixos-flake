@@ -1,5 +1,6 @@
 {
   USERNAME,
+  HOSTNAME,
   ...
 }:
 {
@@ -8,8 +9,11 @@
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
   imports = [
-    ../../modules/home-manager-modules/ssh-keys.nix
+    (import ../../modules/home-manager-modules/ssh-keys.nix {
+      inherit HOSTNAME;
+    })
   ];
+
   # ssh-keys.enable = false;
 
   home.packages = [
