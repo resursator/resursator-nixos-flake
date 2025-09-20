@@ -73,25 +73,12 @@ in
       '';
     };
 
-    systemd.user.services."fix-authorized-keys" = {
-      Unit = {
-        Description = "Copy authorized keys to ~/.ssh/authorized_keys_nix with correct permissions";
-        After = [ "home-manager-resursator.service" ];
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = pkgs.writeShellScript "write-authorized-keys" ''
-          ${pkgs.coreutils}/bin/rm -f ${config.home.homeDirectory}/.ssh/authorized_keys_nix
-          ${pkgs.coreutils}/bin/cp ${config.home.homeDirectory}/.ssh/.authorized_keys_nix \
-             ${config.home.homeDirectory}/.ssh/authorized_keys_nix
-          ${pkgs.coreutils}/bin/chmod 600 ${config.home.homeDirectory}/.ssh/authorized_keys_nix
-        '';
-        RemainAfterExit = true;
-      };
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
-    };
-
+    home.activation.fixAuthorizedKeys = ''
+      ${pkgs.coreutils}/bin/mkdir -p ${config.home.homeDirectory}/.ssh
+      ${pkgs.coreutils}/bin/rm -f ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+      ${pkgs.coreutils}/bin/cp ${config.home.homeDirectory}/.ssh/.authorized_keys_nix \
+         ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+      ${pkgs.coreutils}/bin/chmod 600 ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+    '';
   };
 }
