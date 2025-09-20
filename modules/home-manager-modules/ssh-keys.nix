@@ -54,7 +54,7 @@ in
       };
       defaultSymlinkPath = "/run/user/${builtins.toString uid}/secrets";
       defaultSecretsMountPoint = "/run/user/${builtins.toString uid}/secrets.d";
-      age.keyFile = "/run/user/${builtins.toString uid}/sops-age.txt";
+      age.keyFile = "/run/user/${builtins.toString uid}/${HOSTNAME}.agekey";
     };
 
     programs.ssh = {
