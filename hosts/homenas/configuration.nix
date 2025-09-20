@@ -87,6 +87,10 @@
 
   # services
   ollama.enable = true;
+  dockerProjects.enable = true;
+  dockerProjects.projects = {
+    # portainer = ./docker-compose/portainer/docker-compose.yml;
+  };
 
   # utils
   cliutils.enable = true;
