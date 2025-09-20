@@ -81,10 +81,10 @@ in
       Service = {
         Type = "oneshot";
         ExecStart = pkgs.writeShellScript "write-authorized-keys" ''
-          /run/current-system/sw/bin/rm -f ${config.home.homeDirectory}/.ssh/authorized_keys_nix
-          /run/current-system/sw/bin/cp ${config.home.homeDirectory}/.ssh/.authorized_keys_nix \
+          ${pkgs.coreutils}/bin/rm -f ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+          ${pkgs.coreutils}/bin/cp ${config.home.homeDirectory}/.ssh/.authorized_keys_nix \
              ${config.home.homeDirectory}/.ssh/authorized_keys_nix
-          /run/current-system/sw/bin/chmod 600 ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+          ${pkgs.coreutils}/bin/chmod 600 ${config.home.homeDirectory}/.ssh/authorized_keys_nix
         '';
         RemainAfterExit = true;
       };

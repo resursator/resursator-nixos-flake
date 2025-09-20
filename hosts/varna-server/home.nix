@@ -24,7 +24,8 @@
 
   # ssh-keys.enable = false;
 
-  home.packages = [
+  home.packages = with pkgs; [
+    coreutils
   ];
 
   home.sessionVariables = {
