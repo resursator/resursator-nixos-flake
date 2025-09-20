@@ -81,7 +81,7 @@
               sops-nix.homeManagerModules.sops
               {
                 _module.args = {
-                  inherit USERNAME;
+                  inherit USERNAME HOSTNAME;
                 };
               }
             ];
