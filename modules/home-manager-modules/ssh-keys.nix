@@ -68,9 +68,6 @@ in
     home.file.".ssh/.authorized_keys_nix" = {
       text = authorizedKeysText + "\n";
       recursive = true;
-      onChange = ''
-        systemctl --user restart fix-authorized-keys.service
-      '';
     };
 
     home.activation.fixAuthorizedKeys = ''
