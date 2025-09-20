@@ -1,4 +1,7 @@
 {
+  lib,
+  config,
+  pkgs,
   USERNAME,
   HOSTNAME,
   ...
@@ -10,7 +13,12 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
   imports = [
     (import ../../modules/home-manager-modules/ssh-keys.nix {
-      inherit HOSTNAME;
+      inherit
+        lib
+        config
+        pkgs
+        HOSTNAME
+        ;
     })
   ];
 
