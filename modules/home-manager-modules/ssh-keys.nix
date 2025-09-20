@@ -95,13 +95,5 @@ in
         echo "Добавь её вручную (или в /etc/ssh/sshd_config.d/10-nix-keys.conf)"
       fi
     '';
-
-    ${builtins.trace (
-      if lib.pathExists hostKey then
-        "SSH-GPG: using key for host ${hostName}"
-      else
-        "SSH-GPG WARNING: no secret for host ${hostName} (expected path: ./secrets/${hostName}.gpg.key)"
-    ) ""}
-    ${if lib.pathExists hostKey then "KeyFile ${toString hostKey}" else ""}
   };
 }
