@@ -24,11 +24,29 @@ let
       )
     );
 
-  sshKeys = [
-    "homenix"
-    "homenas"
-    "varna-server"
-  ];
+  fromYAML = import (
+    builtins.fetchTarball {
+      url = "https://github.com/milahu/nix-yaml/archive/4b0f53d4e95e007f474d5ba7b2548d25f11c2afc.tar.gz";
+      sha256 = "1bb7fywnpa8qvk5n5sd8bd5a84mlbjlh64pqbrwb02qqwds6i36w";
+    }
+    + "/from-yaml.nix"
+  ) { inherit lib; };
+
+  allSecrets = fromYAML (builtins.readFile secretsFile);
+
+  sshKeys = builtins.map (k: builtins.replaceStrings [ "ssh_" "_pubkey_unencrypted" ] [ "" "" ] k) (
+    builtins.filter (
+      k: lib.strings.hasPrefix "ssh_" k && lib.strings.hasSuffix "_pubkey_unencrypted" k
+    ) (builtins.attrNames allSecrets)
+  );
+
+  sopsSecrets = builtins.listToAttrs (
+    map (k: {
+      name = "ssh_${k}_pubkey_unencrypted";
+      value = { };
+    }) sshKeys
+  );
+
 in
 {
   options.ssh-keys.enable = lib.mkOption {
@@ -45,12 +63,7 @@ in
 
     sops = {
       defaultSopsFile = secretsFile;
-      secrets.ssh_homenix_pubkey_unencrypted = {
-      };
-      secrets.ssh_homenas_pubkey_unencrypted = {
-      };
-      secrets.ssh_varna-server_pubkey_unencrypted = {
-      };
+      secrets = sopsSecrets;
       defaultSymlinkPath = "/run/user/${builtins.toString uid}/secrets";
       defaultSecretsMountPoint = "/run/user/${builtins.toString uid}/secrets.d";
       age.keyFile = "/run/user/${builtins.toString uid}/sops-age.txt";
