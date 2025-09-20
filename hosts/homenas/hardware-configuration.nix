@@ -38,6 +38,12 @@
     ];
   };
 
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-uuid/42baa653-84ae-4461-932c-1e63f2f15a5f";
+    fsType = "btrfs";
+    options = [ "defaults" ];
+  };
+
   swapDevices = [
     { device = "/dev/disk/by-uuid/7b3407d7-2cef-49df-a4cc-943650cdaea1"; }
   ];
