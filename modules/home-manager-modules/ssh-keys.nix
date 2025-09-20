@@ -3,11 +3,11 @@
   config,
   pkgs,
   HOSTNAME ? "unknown-host",
-  USERNAME,
   ...
 }:
 let
   secretsFile = ../../secrets/secrets.yaml;
+  privatekey = "ssh_${HOSTNAME}_privkey";
 
   uid =
     let
@@ -34,19 +34,11 @@ let
 
   allSecrets = fromYAML (builtins.readFile secretsFile);
 
-  sshKeys = builtins.map (k: builtins.replaceStrings [ "ssh_" "_pubkey_unencrypted" ] [ "" "" ] k) (
-    builtins.filter (
-      k: lib.strings.hasPrefix "ssh_" k && lib.strings.hasSuffix "_pubkey_unencrypted" k
-    ) (builtins.attrNames allSecrets)
-  );
+  sshPubkeys = lib.filterAttrs (
+    name: _: lib.hasPrefix "ssh_" name && lib.hasSuffix "_pubkey_unencrypted" name
+  ) allSecrets;
 
-  sopsSecrets = builtins.listToAttrs (
-    map (k: {
-      name = "ssh_${k}_pubkey_unencrypted";
-      value = { };
-    }) sshKeys
-  );
-
+  authorizedKeysText = lib.concatStringsSep "\n" (lib.attrValues sshPubkeys);
 in
 {
   options.ssh-keys.enable = lib.mkOption {
@@ -56,52 +48,50 @@ in
   };
 
   config = lib.mkIf (lib.hasAttr "ssh-keys" config && config.ssh-keys.enable) {
-    programs.ssh.extraConfig = ''
-      Host *
-        IdentityFile ~/.ssh/ssh_${HOSTNAME}
-    '';
-
     sops = {
       defaultSopsFile = secretsFile;
-      secrets = sopsSecrets;
+      secrets.${privatekey} = {
+      };
       defaultSymlinkPath = "/run/user/${builtins.toString uid}/secrets";
       defaultSecretsMountPoint = "/run/user/${builtins.toString uid}/secrets.d";
       age.keyFile = "/run/user/${builtins.toString uid}/sops-age.txt";
     };
 
-    home.file = lib.mkMerge (
-      map (k: {
-        ".secretSopsPaths/pubkeys/ssh_${k}_pubkey_unencrypted" = {
-          text = config.sops.secrets."ssh_${k}_pubkey_unencrypted".path;
-        };
-      }) sshKeys
-    );
-
-    systemd.user.services."merge-ssh-keys" = {
-      Unit = {
-        Description = "Merge sops-nix ssh key secrets into authorized_keys_nix";
-        After = [ "sops-nix.service" ];
+    programs.ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      matchBlocks."*".extraOptions = {
+        IdentityFile = "/run/user/${toString uid}/secrets/${privatekey}";
       };
+    };
 
+    home.file.".ssh/.authorized_keys_nix" = {
+      text = authorizedKeysText + "\n";
+      recursive = true;
+      onChange = ''
+        systemctl --user restart fix-authorized-keys.service
+      '';
+    };
+
+    systemd.user.services."fix-authorized-keys" = {
+      Unit = {
+        Description = "Copy authorized keys to ~/.ssh/authorized_keys_nix with correct permissions";
+        After = [ "home-manager-resursator.service" ];
+      };
       Service = {
         Type = "oneshot";
-        ExecStart = pkgs.writeShellScript "merge-ssh-keys" ''
-          set -euo pipefail
-
-          OUT="/home/${USERNAME}/.ssh/authorized_keys_nix"
-          : >"$OUT"
-
-          for f in "/home/${USERNAME}/.secretSopsPaths/pubkeys/"*; do
-            [ -f "$f" ] || continue
-            cat "$f" >> "$OUT"
-            echo "" >> "$OUT"
-          done
+        ExecStart = pkgs.writeShellScript "write-authorized-keys" ''
+          /run/current-system/sw/bin/rm -f ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+          /run/current-system/sw/bin/cp ${config.home.homeDirectory}/.ssh/.authorized_keys_nix \
+             ${config.home.homeDirectory}/.ssh/authorized_keys_nix
+          /run/current-system/sw/bin/chmod 600 ${config.home.homeDirectory}/.ssh/authorized_keys_nix
         '';
+        RemainAfterExit = true;
       };
-
       Install = {
         WantedBy = [ "default.target" ];
       };
     };
+
   };
 }

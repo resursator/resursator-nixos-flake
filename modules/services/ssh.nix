@@ -14,5 +14,9 @@
 
     # Open ports in the firewall.
     networking.firewall.allowedTCPPorts = [ 22 ];
+
+    services.openssh.authorizedKeysFiles = [
+      "%h/.ssh/authorized_keys_nix"
+    ];
   };
 }
