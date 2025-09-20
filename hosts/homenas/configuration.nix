@@ -98,7 +98,6 @@
     HandleLidSwitch = "ignore";
     HandleLidSwitchDocked = "ignore";
     HandleSuspendKey = "ignore";
-    HandleHibernateKey = "ignore";
     IdleAction = "ignore";
   };
 
