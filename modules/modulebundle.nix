@@ -3,6 +3,7 @@
   imports = [
     ./nixos/amd.nix
     ./nixos/nvidia.nix
+    ./programs/_3d.nix
     ./programs/alvr.nix
     ./programs/browser.nix
     ./programs/dev.nix

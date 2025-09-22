@@ -28,6 +28,7 @@
   nvidia-drivers.enable = lib.mkDefault true;
 
   # programs
+  _3d.enable = lib.mkDefault false;
   alvr.enable = lib.mkDefault false;
   browser.enable = lib.mkDefault true;
   dev.enable = lib.mkDefault false;

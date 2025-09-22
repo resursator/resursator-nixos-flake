@@ -79,6 +79,7 @@
   dockerProjects.enable = true;
 
   # apps
+  _3d.enable = true;
   alvr.enable = true;
   dev.enable = true;
   gimp-rc.enable = true;
