@@ -8,6 +8,7 @@
     ./programs/browser.nix
     ./programs/dev.nix
     ./programs/gimp-rc.nix
+    ./programs/libreoffice.nix
     ./programs/messengers.nix
     ./programs/nextcloud-client.nix
     ./programs/rustdesk.nix

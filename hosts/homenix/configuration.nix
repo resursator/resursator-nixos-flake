@@ -84,6 +84,7 @@
   alvr.enable = true;
   dev.enable = true;
   gimp-rc.enable = true;
+  libreoffice.enable = true;
   messengers.enable = true;
   steam.enable = true;
   vesktopCustom.enable = true;

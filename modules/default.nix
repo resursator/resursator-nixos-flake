@@ -34,6 +34,7 @@
   browser.enable = lib.mkDefault true;
   dev.enable = lib.mkDefault false;
   gimp-rc.enable = lib.mkDefault false;
+  libreoffice.enable = lib.mkDefault false;
   messengers.enable = lib.mkDefault false;
   nextcloud-client.enable = lib.mkDefault false;
   steam.enable = lib.mkDefault false;
