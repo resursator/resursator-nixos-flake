@@ -89,7 +89,7 @@
   ollama.enable = true;
   dockerProjects.enable = true;
   dockerProjects.projects = {
-    portainer = ../../modules/docker-compose/portainer/docker-compose.yml;
+    portainer = ../../modules/docker-compose/portainer-homenas/docker-compose.yml;
   };
 
   # utils
