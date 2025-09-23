@@ -13,6 +13,7 @@
     environment.systemPackages = with pkgs; [
       git
       mc
+      micro
       nh
       nil # LSP for Kate editor
       nixd # LSP for zed
