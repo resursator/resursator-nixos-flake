@@ -76,6 +76,7 @@
     extraGroups = [ "wheel" ];
   };
 
+  #system modules
   dockerProjects.enable = true;
 
   # apps
@@ -89,6 +90,7 @@
 
   # services
   amnezia.enable = true;
+  nextcloud-client.enable = true;
   ollama.enable = true;
 
   # sound

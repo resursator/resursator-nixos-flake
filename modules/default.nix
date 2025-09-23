@@ -15,6 +15,7 @@
     };
     users.${USERNAME} = lib.mkMerge [
       (import ./home-manager-modules/home.nix)
+      (import ./home-manager-modules/nextcloud-client-nh.nix)
       (import ./home-manager-modules/ssh-gpg.nix)
       (import ./home-manager-modules/ssh-keys.nix)
     ];
@@ -34,6 +35,7 @@
   dev.enable = lib.mkDefault false;
   gimp-rc.enable = lib.mkDefault false;
   messengers.enable = lib.mkDefault false;
+  nextcloud-client.enable = lib.mkDefault false;
   steam.enable = lib.mkDefault false;
   vesktopCustom.enable = lib.mkDefault false;
   zen.enable = lib.mkDefault true;

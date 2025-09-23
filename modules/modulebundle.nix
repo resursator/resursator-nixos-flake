@@ -9,6 +9,7 @@
     ./programs/dev.nix
     ./programs/gimp-rc.nix
     ./programs/messengers.nix
+    ./programs/nextcloud-client.nix
     ./programs/rustdesk.nix
     ./programs/steam.nix
     ./programs/vesktopCustom.nix
