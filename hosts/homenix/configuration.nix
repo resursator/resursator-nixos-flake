@@ -86,6 +86,8 @@
   gimp-rc.enable = true;
   libreoffice.enable = true;
   messengers.enable = true;
+  obsidian.enable = true;
+  pdf-utils.enable = true;
   steam.enable = true;
   vesktopCustom.enable = true;
 

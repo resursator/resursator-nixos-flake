@@ -37,6 +37,8 @@
   libreoffice.enable = lib.mkDefault false;
   messengers.enable = lib.mkDefault false;
   nextcloud-client.enable = lib.mkDefault false;
+  obsidian.enable = lib.mkDefault false;
+  pdf-utils.enable = lib.mkDefault false;
   steam.enable = lib.mkDefault false;
   vesktopCustom.enable = lib.mkDefault false;
   zen.enable = lib.mkDefault true;

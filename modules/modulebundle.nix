@@ -11,6 +11,8 @@
     ./programs/libreoffice.nix
     ./programs/messengers.nix
     ./programs/nextcloud-client.nix
+    ./programs/obsidian.nix
+    ./programs/pdf-utils.nix
     ./programs/rustdesk.nix
     ./programs/steam.nix
     ./programs/vesktopCustom.nix
