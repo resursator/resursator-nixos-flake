@@ -13,6 +13,7 @@
     ./programs/nextcloud-client.nix
     ./programs/obsidian.nix
     ./programs/pdf-utils.nix
+    ./programs/rclone.nix
     ./programs/rustdesk.nix
     ./programs/steam.nix
     ./programs/vesktopCustom.nix
