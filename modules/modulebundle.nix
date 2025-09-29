@@ -15,6 +15,7 @@
     ./programs/pdf-utils.nix
     ./programs/rustdesk.nix
     ./programs/steam.nix
+    ./programs/tor-browser.nix
     ./programs/vesktopCustom.nix
     ./programs/zen-beta.nix
     ./services/amnezia.nix

@@ -89,6 +89,7 @@
   obsidian.enable = true;
   pdf-utils.enable = true;
   steam.enable = true;
+  tor-browser.enable = true;
   vesktopCustom.enable = true;
 
   # services
