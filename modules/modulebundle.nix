@@ -6,7 +6,9 @@
     ./programs/_3d.nix
     ./programs/alvr.nix
     ./programs/browser.nix
+    ./programs/browser-work.nix
     ./programs/dev.nix
+    ./programs/dev-vscode.nix
     ./programs/gimp-rc.nix
     ./programs/libreoffice.nix
     ./programs/messengers.nix

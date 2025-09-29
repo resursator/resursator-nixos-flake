@@ -32,7 +32,9 @@
   _3d.enable = lib.mkDefault false;
   alvr.enable = lib.mkDefault false;
   browser.enable = lib.mkDefault true;
+  browser-work.enable = lib.mkDefault false;
   dev.enable = lib.mkDefault false;
+  dev-vscode.enable = lib.mkDefault false;
   gimp-rc.enable = lib.mkDefault false;
   libreoffice.enable = lib.mkDefault false;
   messengers.enable = lib.mkDefault false;

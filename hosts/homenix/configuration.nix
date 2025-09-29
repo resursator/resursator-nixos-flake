@@ -1,6 +1,7 @@
 {
   HOSTNAME,
   USERNAME,
+  pkgs,
   ...
 }:
 {
@@ -76,21 +77,30 @@
     extraGroups = [ "wheel" ];
   };
 
+  networking.networkmanager = {
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
+  };
+
+
   #system modules
   dockerProjects.enable = true;
 
   # apps
   _3d.enable = true;
-  alvr.enable = true;
-  dev.enable = true;
+  alvr.enable = false;
+  browser-work.enable = true;
+  dev.enable = false;
+  dev-vscode.enable = true;
   gimp-rc.enable = true;
   libreoffice.enable = true;
   messengers.enable = true;
   obsidian.enable = true;
   pdf-utils.enable = true;
-  steam.enable = true;
-  tor-browser.enable = true;
-  vesktopCustom.enable = true;
+  steam.enable = false;
+  tor-browser.enable = false;
+  vesktopCustom.enable = false;
 
   # services
   amnezia.enable = true;
