@@ -39,6 +39,7 @@
   nextcloud-client.enable = lib.mkDefault false;
   obsidian.enable = lib.mkDefault false;
   pdf-utils.enable = lib.mkDefault false;
+  rclone.enable = lib.mkDefault false;
   steam.enable = lib.mkDefault false;
   tor-browser.enable = lib.mkDefault false;
   vesktopCustom.enable = lib.mkDefault false;
