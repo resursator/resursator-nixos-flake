@@ -37,6 +37,7 @@
   dev-vscode.enable = lib.mkDefault false;
   gimp-rc.enable = lib.mkDefault false;
   libreoffice.enable = lib.mkDefault false;
+  messengers-work.enable = lib.mkDefault false;
   messengers.enable = lib.mkDefault false;
   nextcloud-client.enable = lib.mkDefault false;
   obsidian.enable = lib.mkDefault false;

@@ -96,6 +96,7 @@
   gimp-rc.enable = true;
   libreoffice.enable = true;
   messengers.enable = true;
+  messengers-work.enable = true;
   obsidian.enable = true;
   pdf-utils.enable = true;
   steam.enable = false;

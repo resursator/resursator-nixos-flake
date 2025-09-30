@@ -12,6 +12,7 @@
     ./programs/gimp-rc.nix
     ./programs/libreoffice.nix
     ./programs/messengers.nix
+    ./programs/messengers-work.nix
     ./programs/nextcloud-client.nix
     ./programs/obsidian.nix
     ./programs/pdf-utils.nix
