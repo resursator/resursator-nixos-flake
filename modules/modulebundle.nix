@@ -32,6 +32,8 @@
     ./services/plymouth.nix
     ./services/sops.nix
     ./services/ssh.nix
+    ./services/yggdrasil.nix
+    ./services/zerotier.nix
     ./utils/cli.nix
     ./utils/gui.nix
   ];

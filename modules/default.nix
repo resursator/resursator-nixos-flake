@@ -61,6 +61,8 @@
   plymouth.enable = lib.mkDefault true;
   rustdesk.enable = lib.mkDefault true;
   ssh.enable = lib.mkDefault true;
+  yggdrasil.enable = lib.mkDefault false;
+  zerotier.enable = lib.mkDefault false;
 
   # sound
   pipewire.enable = lib.mkDefault true;

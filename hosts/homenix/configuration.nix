@@ -107,6 +107,7 @@
   amnezia.enable = true;
   nextcloud-client.enable = true;
   ollama.enable = true;
+  yggdrasil.enable = true;
 
   # sound
   pipewire.enable = true;
