@@ -126,8 +126,7 @@ let
     "tls://g.ygg.yt:443"
   ];
 
-  # Преобразуем в JSON-массив одной строкой
-  YGG_PEERS_JSON = lib.concatStringsSep "," (map (p: "\"${p}\"") YGG_PEERS);
+  YGG_PEERS_LINE = lib.concatStringsSep ", " (map (p: "\\\"${p}\\\"") YGG_PEERS);
 in
 {
   options = {
@@ -147,10 +146,8 @@ in
         ExecStart = "${pkgs.yggdrasil}/bin/yggdrasil -useconffile ${cfgFile}";
         Restart = "on-failure";
         Type = "simple";
-        # добавляем создание каталога и права
         RuntimeDirectory = "yggdrasil";
         RuntimeDirectoryMode = "0755";
-        # права для TUN
         CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_RAW";
         AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_RAW";
       };
@@ -161,11 +158,11 @@ in
         if [ ! -f ${cfgFile} ]; then
           echo "Generating Yggdrasil config at ${cfgFile}..."
           ${pkgs.yggdrasil}/bin/yggdrasil -genconf > ${cfgFile}
-          ${pkgs.gnused}/bin/sed -i 's|"IfName":.*|"IfName": "tun0",|' ${cfgFile}
-          ${pkgs.gnused}/bin/sed -i 's|"IfMTU":.*|"IfMTU": 1280,|' ${cfgFile}
-
-          ${pkgs.gnused}/bin/sed -i 's|"Peers": \[\]|"Peers": [${YGG_PEERS_JSON}]|' ${cfgFile}
         fi
+
+        ${pkgs.gnused}/bin/sed -i 's|"IfMTU":.*|"IfMTU": 1280,|' ${cfgFile}
+
+        ${pkgs.gnused}/bin/sed -i "s|^[[:space:]]*Peers:.*|Peers: [ ${YGG_PEERS_LINE} ]|" ${cfgFile}
       '';
     };
   };
