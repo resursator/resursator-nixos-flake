@@ -91,17 +91,17 @@
   _3d.enable = true;
   alvr.enable = false;
   browser-work.enable = true;
-  dev.enable = false;
   dev-vscode.enable = true;
+  dev.enable = true;
   gimp-rc.enable = true;
   libreoffice.enable = true;
   messengers.enable = true;
   messengers-work.enable = true;
   obsidian.enable = true;
   pdf-utils.enable = true;
-  steam.enable = false;
-  tor-browser.enable = false;
-  vesktopCustom.enable = false;
+  steam.enable = true;
+  tor-browser.enable = true;
+  vesktopCustom.enable = true;
 
   # services
   amnezia.enable = true;
