@@ -62,6 +62,7 @@
   openrgb.enable = lib.mkDefault false;
   plymouth.enable = lib.mkDefault false;
   rustdesk.enable = lib.mkDefault false;
+  sops.enable = lib.mkDefault false;
   ssh.enable = lib.mkDefault true;
   yggdrasil.enable = lib.mkDefault false;
   zerotier.enable = lib.mkDefault false;
