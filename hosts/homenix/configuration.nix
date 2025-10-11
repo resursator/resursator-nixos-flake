@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/default.nix
   ];
 
   nix.settings.experimental-features = [
@@ -82,7 +83,6 @@
       networkmanager-openvpn
     ];
   };
-
 
   #system modules
   dockerProjects.enable = true;

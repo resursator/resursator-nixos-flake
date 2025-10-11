@@ -22,6 +22,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/default.nix
   ];
 
   # Имя хоста (можно переопределить через Flake specialArgs)

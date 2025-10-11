@@ -56,7 +56,6 @@
             };
             modules = [
               ./hosts/${hn}/configuration.nix
-              ./modules/default.nix
               sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
