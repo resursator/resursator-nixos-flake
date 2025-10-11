@@ -13,10 +13,6 @@ let
   secretsFile = ../../secrets/secrets.yaml;
 in
 {
-  options = {
-    sops.enable = lib.mkEnableOption "enables sops module";
-  };
-
   config = lib.mkIf config.sops.enable {
     environment.systemPackages = with pkgs; [
       age
