@@ -13,10 +13,8 @@ let
   secretsFile = ../../secrets/secrets.yaml;
 in
 {
-  options.sops.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "enables sops module";
+  options = {
+    sops.enable = lib.mkEnableOption "enables sops module";
   };
 
   config = lib.mkIf config.sops.enable {
