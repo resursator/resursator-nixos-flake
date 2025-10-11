@@ -1,33 +1,14 @@
 {
   lib,
   config,
-  HOSTNAME ? "unknown-host",
-  USERNAME,
   ...
 }:
-let
-  hostName = HOSTNAME;
-  secretsFile = ../../secrets/secrets.yaml;
-in
 {
   options = {
     wireguard-transit.enable = lib.mkEnableOption "enables wireguard-transit module";
   };
 
   config = lib.mkIf config.wireguard-transit.enable {
-    sops = {
-      age.keyFile = "/home/${USERNAME}/.config/age/${hostName}.agekey";
-
-      defaultSopsFile = secretsFile;
-      defaultSopsFormat = "yaml";
-
-      secrets = {
-        wireguard-transit-server-key = { };
-        wireguard-transit-client-key = { };
-        wireguard-transit-upstream-endpoint = { };
-      };
-    };
-
     networking.wireguard = {
       enable = true;
 
@@ -35,7 +16,7 @@ in
       interfaces."wg-server" = {
         ips = [ "10.10.0.1/24" ];
         listenPort = 51820;
-        privateKeyFile = config.sops.secrets.wireguard-transit-server-key.path;
+        privateKeyFile = "placeholder";
         peers = [
           {
             publicKey = "EZpz0x2KLjm9+t819g9yaiaTbeoiENV4yaay3Vjy3WE="; # home-mikrotik.pub
@@ -51,11 +32,11 @@ in
       # === Клиент до внешнего VPN (апстрим) ===
       interfaces."wg-client" = {
         ips = [ "10.13.13.4/32" ];
-        privateKeyFile = config.sops.secrets.wireguard-transit-client-key.path;
+        privateKeyFile = "placeholder";
         peers = [
           {
             publicKey = "UKXehTcON8rZ0Ldt/iDuCnXSBZVkp7gSAylQKn8U/x4=";
-            endpoint = config.sops.secrets.wireguard-transit-upstream-endpoint.path;
+            endpoint = "placeholder";
             allowedIPs = [
               "0.0.0.0/0"
               "::/0"
