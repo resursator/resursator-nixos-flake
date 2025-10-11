@@ -14,7 +14,7 @@
       inherit inputs HOSTNAME USERNAME;
     };
     users.${USERNAME} = lib.mkMerge [
-      (import ./home-manager-modules/home.nix)
+      (import ./home-manager-modules/home-cli.nix)
       (import ./home-manager-modules/ssh-keys.nix)
     ];
   };
