@@ -21,7 +21,7 @@ let
 in
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    /home/resursator/hardware-configuration.nix
   ];
 
   # Имя хоста (можно переопределить через Flake specialArgs)
