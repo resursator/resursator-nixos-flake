@@ -41,6 +41,7 @@ in
   users.users.resursator = {
     isNormalUser = true;
     home = "/home/resursator";
+    extraGroups = [ "wheel" ];
     # shell = pkgs.zsh;
     openssh.authorizedKeys.keys = lib.attrValues sshPubkeys;
   };
