@@ -22,7 +22,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/default.nix
+    ../../modules/profile-alma.nix
   ];
 
   # Имя хоста (можно переопределить через Flake specialArgs)
@@ -51,23 +51,6 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  nvidia-drivers.enable = false;
-
-  browser.enable = false;
-  zen.enable = false;
-
-  # services
-  docker.enable = false;
-  openrgb.enable = false;
-  plymouth.enable = false;
-  rustdesk.enable = false;
-
-  pipewire.enable = false;
-
-  # utils
-  cliutils.enable = true;
-  guiutils.enable = false;
 
   system.stateVersion = "25.05";
 }
