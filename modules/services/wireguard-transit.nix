@@ -16,7 +16,7 @@
       interfaces."wg-server" = {
         ips = [ "10.10.0.1/24" ];
         listenPort = 51820;
-        privateKeyFile = "/etc/wireguard/server.key";
+        privateKeyFile = config.sops.secrets.wireguard-transit-server-key.path;
         peers = [
           {
             publicKey = "EZpz0x2KLjm9+t819g9yaiaTbeoiENV4yaay3Vjy3WE="; # home-mikrotik.pub
@@ -31,12 +31,12 @@
 
       # === Клиент до внешнего VPN (апстрим) ===
       interfaces."wg-client" = {
-        ips = [ "10.20.0.2/32" ];
-        privateKeyFile = "/etc/wireguard/client.key";
+        ips = [ "10.13.13.4/32" ];
+        privateKeyFile = config.sops.secrets.wireguard-transit-client-key.path;
         peers = [
           {
-            publicKey = builtins.readFile "/etc/wireguard/upstream.pub";
-            endpoint = "vpn-upstream.example.org:51820";
+            publicKey = "UKXehTcON8rZ0Ldt/iDuCnXSBZVkp7gSAylQKn8U/x4=";
+            endpoint = config.sops.secrets.wireguard-transit-upstream-endpoint.path;
             allowedIPs = [
               "0.0.0.0/0"
               "::/0"

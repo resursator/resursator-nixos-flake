@@ -2,6 +2,7 @@ keys:
   - &homenix_key age1dax5q6rgyj87gugaeq65uxvh5px956zr9m2nhdedtn3p8cvhe30s3dz2zy
   - &homenas_key age1eytdt4fhykvvflvcqnruffpfm6akty64mcp5r76ltl4mn0s3gftqx9rlps
   - &varna-server_key age1wtpqkshxah7r4q4gc8nrmgc6cz8qs3tc5d3zq9ur34s25s8h647s6pel5c
+  - &alma-server_key age1zsyhdj73cmxgg6g86krgg64cvrx9swjemmyz6z85k79fplg5p4mqrqm6d9
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
@@ -9,3 +10,4 @@ creation_rules:
           - *homenix_key
           - *homenas_key
           - *varna-server_key
+          - *alma-server_key
