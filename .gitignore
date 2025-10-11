@@ -1,2 +1,3 @@
 
 secrets/*.key
+hosts/alma-server/hardware-configuration.nix
