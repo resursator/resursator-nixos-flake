@@ -48,8 +48,6 @@ in
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.enable = true;
 
-  kde-home.enable = false;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
