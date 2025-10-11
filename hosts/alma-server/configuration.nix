@@ -20,24 +20,29 @@ let
   ) allSecrets;
 in
 {
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+  ];
+
   # Имя хоста (можно переопределить через Flake specialArgs)
   networking.hostName = "alma-server";
 
   # SSH
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false; # только ключи
-  services.openssh.permitRootLogin = "no";
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "prohibit-password";
+      PasswordAuthentication = false;
+    };
+  };
 
   # Пользователь с ключом
   users.users.resursator = {
     isNormalUser = true;
     home = "/home/resursator";
-    shell = pkgs.zsh;
+    # shell = pkgs.zsh;
     openssh.authorizedKeys.keys = lib.attrValues sshPubkeys;
   };
-
-  # Root тоже по ключу (необязательно)
-  users.users.root.openssh.authorizedKeys.keys = lib.attrValues sshPubkeys;
 
   # Минимальные сервисы
   networking.firewall.allowedTCPPorts = [ 22 ];
