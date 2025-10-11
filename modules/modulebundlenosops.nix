@@ -1,0 +1,40 @@
+{ ... }:
+{
+  imports = [
+    ./nixos/amd.nix
+    ./nixos/nvidia.nix
+    ./programs/_3d.nix
+    ./programs/alvr.nix
+    ./programs/browser.nix
+    ./programs/browser-work.nix
+    ./programs/dev.nix
+    ./programs/dev-vscode.nix
+    ./programs/gimp-rc.nix
+    ./programs/libreoffice.nix
+    ./programs/messengers.nix
+    ./programs/messengers-work.nix
+    ./programs/nextcloud-client.nix
+    ./programs/obsidian.nix
+    ./programs/pdf-utils.nix
+    ./programs/rclone.nix
+    ./programs/rustdesk.nix
+    ./programs/steam.nix
+    ./programs/tor-browser.nix
+    ./programs/vesktopCustom.nix
+    ./programs/zen-beta.nix
+    ./services/amnezia.nix
+    ./services/docker.nix
+    ./services/dockerProjects.nix
+    ./services/ollama.nix
+    ./services/openrgb.nix
+    ./services/pipewire.nix
+    ./services/pulse.nix
+    ./services/plymouth.nix
+    ./services/ssh.nix
+    ./services/yggdrasil.nix
+    ./services/zerotier.nix
+    ./utils/cli.nix
+    ./utils/cli-small.nix
+    ./utils/gui.nix
+  ];
+}

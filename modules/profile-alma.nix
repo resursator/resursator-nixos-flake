@@ -20,7 +20,7 @@
   };
 
   imports = [
-    ./modulebundle.nix
+    ./modulebundlenosops.nix
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
