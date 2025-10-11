@@ -1,8 +1,14 @@
 {
   lib,
   config,
+  HOSTNAME ? "unknown-host",
+  USERNAME,
   ...
 }:
+let
+  hostName = HOSTNAME;
+  secretsFile = ../../secrets/secrets.yaml;
+in
 {
   options = {
     wireguard-transit.enable = lib.mkEnableOption "enables wireguard-transit module";
@@ -11,6 +17,19 @@
   config = lib.mkIf config.wireguard-transit.enable {
     networking.wireguard = {
       enable = true;
+
+      sops = {
+        age.keyFile = "/home/${USERNAME}/.config/age/${hostName}.agekey";
+
+        defaultSopsFile = secretsFile;
+        defaultSopsFormat = "yaml";
+
+        secrets = {
+          wireguard-transit-server-key = { };
+          wireguard-transit-client-key = { };
+          wireguard-transit-upstream-endpoint = { };
+        };
+      };
 
       # === Сервер для клиентов ===
       interfaces."wg-server" = {
