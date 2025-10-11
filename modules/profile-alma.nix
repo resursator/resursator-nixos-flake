@@ -15,15 +15,20 @@
     };
     users.${USERNAME} = lib.mkMerge [
       (import ./home-manager-modules/home-cli.nix)
+      (import ./home-manager-modules/ssh-keys.nix)
     ];
   };
 
   imports = [
     ./modulebundle.nix
+    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+      home-manager.sharedModules = [
+        inputs.sops-nix.homeManagerModules.sops
+      ];
     }
   ];
 
@@ -62,7 +67,7 @@
   openrgb.enable = lib.mkDefault false;
   plymouth.enable = lib.mkDefault false;
   rustdesk.enable = lib.mkDefault false;
-  sops.enable = false;
+  sops.enable = lib.mkDefault false;
   ssh.enable = lib.mkDefault true;
   yggdrasil.enable = lib.mkDefault false;
   zerotier.enable = lib.mkDefault false;
