@@ -25,6 +25,11 @@ in
     ../../modules/profile-alma.nix
   ];
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # Имя хоста (можно переопределить через Flake specialArgs)
   networking.hostName = "alma-server";
 
