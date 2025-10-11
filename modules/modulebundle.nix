@@ -35,6 +35,7 @@
     ./services/yggdrasil.nix
     ./services/zerotier.nix
     ./utils/cli.nix
+    ./utils/cli-small.nix
     ./utils/gui.nix
   ];
 }

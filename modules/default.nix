@@ -23,6 +23,16 @@
 
   imports = [
     ./modulebundle.nix
+    inputs.sops-nix.nixosModules.sops
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.sharedModules = [
+        inputs.plasma-manager.homeModules.plasma-manager
+        inputs.sops-nix.homeManagerModules.sops
+      ];
+    }
   ];
 
   amd-drivers.enable = lib.mkDefault false;
