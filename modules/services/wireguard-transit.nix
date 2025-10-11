@@ -15,21 +15,21 @@ in
   };
 
   config = lib.mkIf config.wireguard-transit.enable {
+    sops = {
+      age.keyFile = "/home/${USERNAME}/.config/age/${hostName}.agekey";
+
+      defaultSopsFile = secretsFile;
+      defaultSopsFormat = "yaml";
+
+      secrets = {
+        wireguard-transit-server-key = { };
+        wireguard-transit-client-key = { };
+        wireguard-transit-upstream-endpoint = { };
+      };
+    };
+
     networking.wireguard = {
       enable = true;
-
-      sops = {
-        age.keyFile = "/home/${USERNAME}/.config/age/${hostName}.agekey";
-
-        defaultSopsFile = secretsFile;
-        defaultSopsFormat = "yaml";
-
-        secrets = {
-          wireguard-transit-server-key = { };
-          wireguard-transit-client-key = { };
-          wireguard-transit-upstream-endpoint = { };
-        };
-      };
 
       # === Сервер для клиентов ===
       interfaces."wg-server" = {
