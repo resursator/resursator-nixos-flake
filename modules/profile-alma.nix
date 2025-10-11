@@ -77,7 +77,7 @@
 
   # utils
   cliutils.enable = lib.mkDefault false;
-  cli-small.enable = lib.mkDefault true;
+  cli-small-utils.enable = lib.mkDefault true;
   guiutils.enable = lib.mkDefault false;
 
   environment.sessionVariables = {
