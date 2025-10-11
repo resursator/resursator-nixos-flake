@@ -15,20 +15,15 @@
     };
     users.${USERNAME} = lib.mkMerge [
       (import ./home-manager-modules/home-cli.nix)
-      (import ./home-manager-modules/ssh-keys.nix)
     ];
   };
 
   imports = [
     ./modulebundle.nix
-    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.sharedModules = [
-        inputs.sops-nix.homeManagerModules.sops
-      ];
     }
   ];
 
