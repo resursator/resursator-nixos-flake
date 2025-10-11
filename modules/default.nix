@@ -72,6 +72,7 @@
   rustdesk.enable = lib.mkDefault true;
   sops.enable = lib.mkDefault true;
   ssh.enable = lib.mkDefault true;
+  wireguard-transit.enable = lib.mkDefault false;
   yggdrasil.enable = lib.mkDefault false;
   zerotier.enable = lib.mkDefault false;
 

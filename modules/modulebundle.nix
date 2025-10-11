@@ -32,6 +32,7 @@
     ./services/plymouth.nix
     ./services/sops.nix
     ./services/ssh.nix
+    ./services/wireguard-transit.nix
     ./services/yggdrasil.nix
     ./services/zerotier.nix
     ./utils/cli.nix
