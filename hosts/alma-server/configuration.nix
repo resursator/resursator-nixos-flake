@@ -67,4 +67,6 @@ in
   # utils
   cliutils.enable = true;
   guiutils.enable = false;
+
+  system.stateVersion = "25.05";
 }
