@@ -35,6 +35,7 @@
       USERNAME = "resursator";
 
       nixosHosts = {
+        alma-server = "alma-server";
         homenix = "homenix";
         homenas = "homenas";
       };
