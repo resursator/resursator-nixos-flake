@@ -1,12 +1,5 @@
+{ ... }:
 {
-  config,
-  lib,
-  ...
-}:
-{
-  options = {
-    sops.enable = lib.mkEnableOption "enables sops module";
-  };
   imports = [
     ./nixos/amd.nix
     ./nixos/nvidia.nix
@@ -37,12 +30,12 @@
     ./services/pipewire.nix
     ./services/pulse.nix
     ./services/plymouth.nix
+    ./services/sops.nix
     ./services/ssh.nix
     ./services/yggdrasil.nix
     ./services/zerotier.nix
     ./utils/cli.nix
     ./utils/cli-small.nix
     ./utils/gui.nix
-  ]
-  ++ lib.optional config.sops.enable ./services/sops.nix;
+  ];
 }
