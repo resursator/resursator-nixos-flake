@@ -16,7 +16,7 @@
       interfaces."wg-server" = {
         ips = [ "10.10.0.1/24" ];
         listenPort = 51820;
-        privateKeyFile = "placeholder";
+        privateKeyFile = "/etc/wireguard/server.key";
         peers = [
           {
             publicKey = "EZpz0x2KLjm9+t819g9yaiaTbeoiENV4yaay3Vjy3WE="; # home-mikrotik.pub
@@ -32,7 +32,7 @@
       # === Клиент до внешнего VPN (апстрим) ===
       interfaces."wg-client" = {
         ips = [ "10.13.13.4/32" ];
-        privateKeyFile = "placeholder";
+        privateKeyFile = "/etc/wireguard/client.key";
         peers = [
           {
             publicKey = "UKXehTcON8rZ0Ldt/iDuCnXSBZVkp7gSAylQKn8U/x4=";
