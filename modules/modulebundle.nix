@@ -25,6 +25,7 @@
     ./services/amnezia.nix
     ./services/docker.nix
     ./services/dockerProjects.nix
+    ./services/k8t-kind.nix
     ./services/ollama.nix
     ./services/openrgb.nix
     ./services/pipewire.nix

@@ -65,6 +65,7 @@
   dockerProjects.projects = {
     # portainer = ./docker-compose/portainer/docker-compose.yml;
   };
+  k8t-kind.enable = lib.mkDefault false;
 
   ollama.enable = lib.mkDefault false;
   openrgb.enable = lib.mkDefault true;

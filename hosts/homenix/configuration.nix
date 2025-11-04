@@ -105,6 +105,7 @@
 
   # services
   amnezia.enable = true;
+  k8t-kind.enable = true;
   nextcloud-client.enable = true;
   ollama.enable = true;
   yggdrasil.enable = true;
