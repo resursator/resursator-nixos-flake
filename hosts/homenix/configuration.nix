@@ -99,6 +99,7 @@
   messengers-work.enable = true;
   obsidian.enable = true;
   pdf-utils.enable = true;
+  rustdesk.enable = false;
   steam.enable = true;
   tor-browser.enable = true;
   vesktopCustom.enable = true;
