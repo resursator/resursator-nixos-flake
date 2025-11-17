@@ -11,6 +11,7 @@
 
   config = lib.mkIf config.k8t-kind.enable {
     environment.systemPackages = with pkgs; [
+      kubernetes-helm
       kind
       kubectl
       kubernetes-helm
