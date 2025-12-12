@@ -12,7 +12,7 @@
   config = lib.mkIf config.ollama.enable {
     services.ollama = {
       enable = true;
-      acceleration = "cuda";
+      package = pkgs.ollama-cuda;
       host = "0.0.0.0";
       environmentVariables = {
         CUDA_VISIBLE_DEVICES = "0";
