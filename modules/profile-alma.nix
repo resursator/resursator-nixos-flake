@@ -56,7 +56,7 @@
 
   # services
   amnezia.enable = lib.mkDefault false;
-  docker.enable = lib.mkDefault false;
+  docker.enable = lib.mkDefault true;
   dockerProjects.enable = lib.mkDefault false;
   dockerProjects.projects = {
     # portainer = ./docker-compose/portainer/docker-compose.yml;
