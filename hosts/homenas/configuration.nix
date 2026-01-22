@@ -70,6 +70,87 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable the samba.
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    securityType = "user";
+
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "homenas";
+        "netbios name" = "homenas";
+        "security" = "user";
+        #"use sendfile" = "yes";
+        #"max protocol" = "smb2";
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = "10.110.0.0/24 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      "nas-media" = {
+        "path" = "/mnt/data/nas-media";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${USERNAME}";
+        "force group" = "users";
+      };
+      "nas-main-pc" = {
+        "path" = "/mnt/data/nas-main-pc";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${USERNAME}";
+        "force group" = "users";
+      };
+      "nas-private" = {
+        "path" = "/mnt/data/nas-private";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${USERNAME}";
+        "force group" = "users";
+      };
+      "nas-servers" = {
+        "path" = "/mnt/data/nas-servers";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${USERNAME}";
+        "force group" = "users";
+      };
+      "nas-eldest-hdds" = {
+        "path" = "/mnt/data/nas-eldest-hdds";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "${USERNAME}";
+        "force group" = "users";
+      };
+    };
+  };
+
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  networking.firewall.enable = true;
+  networking.firewall.allowPing = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${USERNAME} = {
     isNormalUser = true;
