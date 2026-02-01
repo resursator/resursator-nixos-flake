@@ -166,7 +166,7 @@
 
   amd-drivers.enable = true;
   nvidia-drivers.enable = false;
-  rclone.enable = true;
+  restic-rclone.enable = true;
 
   # services
   ollama.enable = true;

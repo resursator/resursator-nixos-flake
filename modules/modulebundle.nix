@@ -32,6 +32,7 @@
     ./services/pipewire.nix
     ./services/pulse.nix
     ./services/plymouth.nix
+    ./services/restic-rclone.nix
     ./services/sops.nix
     ./services/ssh.nix
     ./services/wireguard-transit.nix
