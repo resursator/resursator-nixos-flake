@@ -71,7 +71,7 @@
   ollama.enable = lib.mkDefault false;
   openrgb.enable = lib.mkDefault true;
   plymouth.enable = lib.mkDefault true;
-  rustdesk.enable = lib.mkDefault true;
+  rustdesk.enable = lib.mkDefault false;
   sops.enable = lib.mkDefault true;
   ssh.enable = lib.mkDefault true;
   wireguard-transit.enable = lib.mkDefault false;

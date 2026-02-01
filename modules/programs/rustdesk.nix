@@ -11,7 +11,7 @@
 
   config = lib.mkIf config.rustdesk.enable {
     environment.systemPackages = with pkgs; [
-      rustdesk-flutter
+      rustdesk
     ];
   };
 }
