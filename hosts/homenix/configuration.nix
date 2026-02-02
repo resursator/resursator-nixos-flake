@@ -94,6 +94,7 @@
   dev-vscode.enable = true;
   dev.enable = true;
   gimp-rc.enable = true;
+  keypassxc.enable = true;
   libreoffice.enable = true;
   messengers.enable = true;
   messengers-work.enable = true;

@@ -10,6 +10,7 @@
     ./programs/dev.nix
     ./programs/dev-vscode.nix
     ./programs/gimp-rc.nix
+    ./programs/keypassxc.nix
     ./programs/kodi-iptv.nix
     ./programs/libreoffice.nix
     ./programs/messengers.nix
