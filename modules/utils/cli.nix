@@ -12,6 +12,7 @@
   config = lib.mkIf config.cliutils.enable {
     environment.systemPackages = with pkgs; [
       git
+      killall
       mc
       micro
       nh

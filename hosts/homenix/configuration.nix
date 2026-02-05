@@ -110,6 +110,7 @@
   k8t-kind.enable = true;
   nextcloud-client.enable = true;
   ollama.enable = true;
+  x11vnc.enable = true;
   yggdrasil.enable = true;
 
   # sound
