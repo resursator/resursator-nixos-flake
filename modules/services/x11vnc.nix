@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  USERNAME,
   ...
 }:
 {
@@ -34,7 +33,7 @@
         RestartSec = "2s";
       };
 
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
     };
 
   };

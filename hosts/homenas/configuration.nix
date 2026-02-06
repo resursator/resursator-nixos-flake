@@ -170,6 +170,7 @@
 
   # services
   ollama.enable = true;
+  x11vnc.enable = true;
   dockerProjects.enable = true;
   dockerProjects.projects = {
     portainer = ../../modules/docker-compose/portainer-homenas/docker-compose.yml;
