@@ -20,6 +20,7 @@
         Description = "Remote desktop service (x11vnc)";
         Requires = "graphical.target";
         After = "graphical.target";
+        ConditionPathExistsGlob = "/var/run/sddm/*";
       };
 
       serviceConfig = {
@@ -33,7 +34,7 @@
         RestartSec = "2s";
       };
 
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "graphical.target" ];
     };
   };
 }
