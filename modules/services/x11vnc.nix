@@ -31,10 +31,20 @@
 
         Restart = "on-failure";
         RestartSec = "2s";
+        StandardOutput = "append:/var/log/x11vnc.log";
+        StandardError = "append:/var/log/x11vnc.log";
       };
 
       wantedBy = [ "multi-user.target" ];
     };
 
+    services.logrotate.settings.x11vnc = {
+      files = [ "/var/log/x11vnc.log" ];
+      rotate = 1;
+      size = "10k";
+      compress = true;
+      missingok = true;
+      notifempty = true;
+    };
   };
 }
