@@ -30,8 +30,7 @@
         ExecStop = "${pkgs.coreutils}/bin/killall x11vnc";
 
         Restart = "on-failure";
-        RestartSec = "2s";
-        StandardError = null;
+        RestartSec = "60s";
       };
 
       wantedBy = [ "multi-user.target" ];
