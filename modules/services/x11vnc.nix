@@ -18,8 +18,8 @@
 
       unitConfig = {
         Description = "Remote desktop service (x11vnc)";
-        Requires = "display-manager.service";
-        After = "display-manager.service";
+        Requires = "graphical.target";
+        After = "graphical.target";
       };
 
       serviceConfig = {
@@ -30,7 +30,7 @@
         ExecStop = "${pkgs.coreutils}/bin/killall x11vnc";
 
         Restart = "on-failure";
-        RestartSec = "60s";
+        RestartSec = "2s";
       };
 
       wantedBy = [ "multi-user.target" ];
