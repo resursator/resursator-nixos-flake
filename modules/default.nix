@@ -45,6 +45,7 @@
   browser-work.enable = lib.mkDefault false;
   dev.enable = lib.mkDefault false;
   dev-vscode.enable = lib.mkDefault false;
+  fjord-launcher.enable = lib.mkDefault false;
   gimp-rc.enable = lib.mkDefault false;
   keypassxc.enable = lib.mkDefault false;
   kodi-iptv.enable = lib.mkDefault false;

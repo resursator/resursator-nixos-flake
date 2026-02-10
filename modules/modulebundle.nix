@@ -9,6 +9,7 @@
     ./programs/browser-work.nix
     ./programs/dev.nix
     ./programs/dev-vscode.nix
+    ./programs/fjord-launcher.nix
     ./programs/gimp-rc.nix
     ./programs/keypassxc.nix
     ./programs/kodi-iptv.nix

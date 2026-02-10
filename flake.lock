@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "fjordlauncher": {
+      "inputs": {
+        "libnbtplusplus": "libnbtplusplus",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770061615,
+        "narHash": "sha256-uyIqof/kw2DDuxf48aJuzZxnrgemYGrN36/85/qG2tw=",
+        "owner": "unmojang",
+        "repo": "FjordLauncher",
+        "rev": "b6e5f74841422c06501b97f63f525d87803b200a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unmojang",
+        "repo": "FjordLauncher",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -38,6 +59,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "libnbtplusplus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744811532,
+        "narHash": "sha256-qhmjaRkt+O7A+gu6HjUkl7QzOEb4r8y8vWZMG2R/C6o=",
+        "owner": "PrismLauncher",
+        "repo": "libnbtplusplus",
+        "rev": "531449ba1c930c98e0bcf5d332b237a8566f9d78",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrismLauncher",
+        "repo": "libnbtplusplus",
         "type": "github"
       }
     },
@@ -82,6 +119,7 @@
     },
     "root": {
       "inputs": {
+        "fjordlauncher": "fjordlauncher",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "plasma-manager": "plasma-manager",

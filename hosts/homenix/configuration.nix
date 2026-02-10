@@ -93,6 +93,7 @@
   browser-work.enable = true;
   dev-vscode.enable = true;
   dev.enable = true;
+  fjord-launcher.enable = true;
   gimp-rc.enable = true;
   keypassxc.enable = true;
   libreoffice.enable = true;

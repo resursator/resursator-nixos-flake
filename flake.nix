@@ -20,6 +20,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fjordlauncher = {
+      url = "github:unmojang/FjordLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -32,6 +36,7 @@
     }@inputs:
     let
       zenpkgs = inputs.zen-browser.packages.x86_64-linux;
+      fjordpkgs = inputs.fjordlauncher.packages.x86_64-linux;
       USERNAME = "resursator";
 
       nixosHosts = {
@@ -51,7 +56,12 @@
           name = hn;
           value = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs zenpkgs USERNAME;
+              inherit
+                inputs
+                zenpkgs
+                fjordpkgs
+                USERNAME
+                ;
               HOSTNAME = hn;
             };
             modules = [
