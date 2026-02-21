@@ -10,6 +10,9 @@
     # Enable OpenGL
     hardware.graphics.enable = true;
 
+    # Enable NVIDIA Container Toolkit
+    hardware.nvidia-container-toolkit.enable = true;
+
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = [ "nvidia" ];
 
