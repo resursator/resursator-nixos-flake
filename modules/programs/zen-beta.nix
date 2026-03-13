@@ -6,7 +6,7 @@
   ...
 }:
 let
-  customZenIcons = pkgs.runCommand "custom-zen-icon" {} ''
+  customZenIcons = pkgs.runCommand "custom-zen-icon" { } ''
     mkdir -p $out
     cp ${../../resources/zen/default16.png} $out/default16.png
     cp ${../../resources/zen/default32.png} $out/default32.png
@@ -15,19 +15,21 @@ let
     cp ${../../resources/zen/default128.png} $out/default128.png
   '';
 
-  variant = "default";
+  zenBase = pkgs.wrapFirefox zenpkgs.beta-unwrapped {
+    icon = "zen-browser";
+  };
 
-  zenCustom = zenpkgs.${variant}.overrideAttrs (oldAttrs: {
-    installPhase = oldAttrs.installPhase or "" + ''
-      echo "Replacing icons"
-      filename=$(ls $out/share/icons/hicolor/16x16/apps/)
-      install -D ${customZenIcons}/default16.png $out/share/icons/hicolor/16x16/apps/$filename
-      install -D ${customZenIcons}/default32.png $out/share/icons/hicolor/32x32/apps/$filename
-      install -D ${customZenIcons}/default48.png $out/share/icons/hicolor/48x48/apps/$filename
-      install -D ${customZenIcons}/default64.png $out/share/icons/hicolor/64x64/apps/$filename
-      install -D ${customZenIcons}/default128.png $out/share/icons/hicolor/128x128/apps/$filename
+  zenCustom = pkgs.symlinkJoin {
+    name = "zen-beta";
+    paths = [ zenBase ];
+    postBuild = ''
+      for size in 16 32 48 64 128; do
+        rm -f $out/share/icons/hicolor/''${size}x''${size}/apps/zen-browser.png
+        install -D ${customZenIcons}/default''${size}.png \
+          $out/share/icons/hicolor/''${size}x''${size}/apps/zen-browser.png
+      done
     '';
-  });
+  };
 in
 {
   options = {
