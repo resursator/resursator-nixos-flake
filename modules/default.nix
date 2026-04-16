@@ -77,6 +77,7 @@
   restic-rclone.enable = lib.mkDefault false;
   sops.enable = lib.mkDefault true;
   ssh.enable = lib.mkDefault true;
+  wireguard-swag.enable = lib.mkDefault false;
   wireguard-transit.enable = lib.mkDefault false;
   x11vnc.enable = lib.mkDefault false;
   yggdrasil.enable = lib.mkDefault false;

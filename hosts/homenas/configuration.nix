@@ -174,6 +174,7 @@
   dockerProjects.projects = {
     portainer = ../../modules/docker-compose/portainer-homenas/docker-compose.yml;
   };
+  wireguard-swag.enable = true;
 
   # utils
   cliutils.enable = true;

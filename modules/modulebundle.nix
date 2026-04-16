@@ -37,6 +37,7 @@
     ./services/restic-rclone.nix
     ./services/sops.nix
     ./services/ssh.nix
+    ./services/wireguard-swag.nix
     ./services/wireguard-transit.nix
     ./services/x11vnc.nix
     ./services/yggdrasil.nix
