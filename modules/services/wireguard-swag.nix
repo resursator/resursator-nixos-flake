@@ -1,29 +1,35 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
   options = {
     wireguard-swag.enable = lib.mkEnableOption "enables wireguard-swag module";
   };
-
   config = lib.mkIf config.wireguard-swag.enable {
+    environment.systemPackages = with pkgs; [
+      amneziawg-go
+      amneziawg-tools
+    ];
 
-    networking.wireguard.interfaces.wg0 = {
-      ips = [ "10.8.0.2/24" ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [
+      amneziawg
+    ];
+    boot.kernelModules = [ "amneziawg" ];
 
-      privateKeyFile = "/etc/wireguard/wg0.key";
-
-      peers = [
-        {
-          publicKey = "uhOgraC20g+n4Xw2DxTvI5XKQkT3/sx+OR34x4pxYU8=";
-          endpoint = "132.243.26.120:51820";
-          allowedIPs = [ "10.8.0.1/32" ];
-          persistentKeepalive = 25;
-        }
-      ];
+    systemd.services."awg-quick@awg0" = {
+      description = "AmneziaWG via awg-quick for awg0";
+      after = [ "network-online.target" "nss-lookup.target" "sys-module-amneziawg.device" ];
+      wants = [ "network-online.target" "nss-lookup.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amnwireguard/awg0.conf";
+        ExecStop = "${pkgs.amneziawg-tools}/bin/awg-quick down /etc/amnwireguard/awg0.conf";
+      };
     };
-
   };
 }
